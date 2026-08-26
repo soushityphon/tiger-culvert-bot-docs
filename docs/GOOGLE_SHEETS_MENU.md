@@ -1,135 +1,171 @@
-# Google Sheets Menu Guide
+# Google Sheets Menu Reference
 
-Spreadsheet access should be limited to trusted admins.
+All Google Sheets menu actions rely on spreadsheet access and Apps Script authorisation. Discord role checks do not control Sheet menu access, so access to the spreadsheet itself should be limited to trusted users.
 
-This guide documents the day-to-day Tiger Tracker menu actions. Private bot configuration and deployment settings are intentionally not covered here.
+## Tiger Tracker
 
-# Tiger Tracker
-
-## `Import weekly CSV`
+### `Import weekly CSV`
 
 Manual fallback importer for weekly screenshot-derived CSV data.
 
-The Discord screenshot importer is the normal workflow.
+The Discord screenshot importer is the normal workflow. Keep CSV import as a fallback.
 
-## `Add selected as active player`
+### `Add selected as active player`
 
-From an Import Review row, creates a new player record marked Active and resolves the selected review row.
+From an Import Review row, creates a new Players record marked Active and resolves the selected review row to that Player ID.
 
-Use this for a genuinely new current member.
+### `Add selected as former player`
 
-## `Add selected as former player`
+From an Import Review row, creates a new Players record marked inactive/former and resolves the selected review row.
 
-From an Import Review row, creates a historical/former player record without making that player Active.
+Use this for historical players who should not become current guild members.
 
-Use this for older historical imports.
-
-## `Confirm week into Weekly Data`
+### `Confirm week into Weekly Data`
 
 Validates Import Review and writes the selected week into Weekly Data.
 
-Important safety behaviour includes:
+Core safety steps include:
 
-- every staged row must be resolved before confirmation
+- every staged row must be `OK`
+- each player must resolve to a valid Player ID
 - duplicate Player IDs are blocked
-- required numeric values must be valid
-- historical imports show the exact target date before writing
-- replacing an existing week requires confirmation
-- eligible current imports can show roster changes before approval
-- Tiger verifies the target Weekly Data week after writing
-- if core write verification fails, Import Review is kept for recovery
-- Import Review clears automatically only after successful core confirmation
+- required numeric values must be present
+- historical imports show an exact target-date confirmation
+- replacing an existing week requires explicit confirmation
+- current complete imports can show a roster reconciliation preview
+- the target Weekly Data week is re-read and verified after writing
+- on write-verification failure, Tiger attempts to restore the pre-confirm Weekly Data snapshot
+- Import Review clears automatically only after core confirmation succeeds
 
-## `Clear Import Review`
+### `Clear Import Review`
 
 Manual discard/recovery action.
 
-Normal successful confirmation clears Import Review automatically.
-
-Use this only when intentionally discarding an incorrect, abandoned, or unwanted staged import.
+This is now on the main Tiger Tracker menu because it is part of import workflow recovery. Normal successful confirmation clears Import Review automatically, so this action is mainly for deliberately discarding an abandoned or incorrect staged import.
 
 ---
 
-# Tiger Tracker > Discord
+## Tiger Tracker > Discord
 
-These are optional Google Sheets posting tools that overlap with some Discord bot commands.
+These are Google Sheets webhook posting tools. They overlap with some bot slash commands but remain available as optional/legacy manual posting paths.
 
-## `Post Culvert Leaderboard`
+### `Post Culvert Leaderboard`
 
-Posts the newest Culvert leaderboard through a saved Discord destination.
+Posts the newest Culvert leaderboard to a saved Discord webhook destination.
 
-## `Post Culvert Leaderboard • choose week`
+### `Post Culvert Leaderboard • choose week`
 
 Prompts for a Tiger week, then posts the leaderboard.
 
-## `Post Guild Weekly Summary`
+### `Post Guild Weekly Summary`
 
-Posts the newest weekly guild summary.
+Posts the newest weekly guild summary through a saved webhook.
 
-## `Post Guild Weekly Summary • choose week`
+### `Post Guild Weekly Summary • choose week`
 
-Prompts for a week before posting the summary.
+Prompts for a Tiger week before posting the summary.
 
-## `Post Weekly Milestones`
+### `Post Weekly Milestones`
 
-Posts the newest weekly milestone statistics.
+Posts newest weekly milestone statistics.
 
-## `Post Weekly Milestones • choose week`
+### `Post Weekly Milestones • choose week`
 
 Prompts for a week before posting milestone statistics.
 
-Other items in this submenu are maintenance/configuration tools and are intentionally not documented in this public admin guide.
+### `Set / update Bot API secret`
+
+Stores/updates the Apps Script API secret used by the Worker. The matching Cloudflare secret is `TIGER_API_SECRET`.
+
+### `Add / update destination`
+
+Adds or updates a named Discord webhook destination.
+
+### `Remove destination`
+
+Removes a saved webhook destination.
+
+### `View destinations`
+
+Shows saved destination names without exposing webhook URLs.
 
 ---
 
-# Tiger Tracker > Review / Maintenance
+## Tiger Tracker > Review / Maintenance
 
-## `Re-run name matching`
+### `Re-run name matching`
 
-Re-runs Tiger's player matching across Import Review.
+Re-runs the shared player resolver across Import Review.
 
-Use this after fixing player data or when staged rows should be matched again.
+Matching can use current IGN, genuine aliases, normalised names, learned OCR Aliases, unique truncated matches, and unique fuzzy matches.
 
-## `Resolve selected row to chosen player`
+### `Resolve selected row to chosen player`
 
-Resolves the selected Import Review row to an existing player.
+Resolves the selected Import Review row to the chosen/entered player and can teach the OCR Alias system when appropriate.
 
-## `Add selected row as new player (guided)`
+### `Add selected row as new player (guided)`
 
-Guided fallback for adding a new current or historical/former player.
+Guided fallback that asks whether the new player should be Active or historical/former.
 
-The two main-menu Active/Former actions are usually clearer.
+This overlaps with the two main-menu Add selected actions and is retained as an optional helper.
 
-## `Preview roster changes`
+### `Preview roster changes`
 
-Shows proposed current-roster changes before confirmation when the staged import is eligible.
+Shows proposed current-roster reconciliation before confirmation when the staged import is eligible.
 
-## `Check setup`
+### `Set up roster tracking field`
 
-Checks that the tracker has the sheets and fields needed for normal operation.
+Ensures the Players sheet has the required Last Seen field/format for roster reconciliation.
 
-## `Rebuild Start Here`
+### `Check setup`
 
-Refreshes the in-sheet workflow guide.
+Checks required sheets and important headers, including:
 
-## `Rebuild Dashboard`
+- OCR Aliases
+- Culvert Role Plans
+- Culvert Exemptions
+- Discord Import Sessions
 
-Rebuilds the admin Dashboard from confirmed data.
+### `Set up Discord player fields`
 
-## `Rebuild Culvert History`
+Ensures Discord Username and Discord User ID fields exist in Players.
 
-Rebuilds the guild-wide Culvert history view.
+### `Set up OCR alias learning`
 
-## `Rebuild Data Audit`
+Creates/repairs the hidden OCR Aliases sheet.
+
+### `Set up Culvert role plans`
+
+Creates/repairs the hidden Culvert Role Plans sheet used for short-lived Apply/Cancel plans.
+
+### `Set up Culvert exemptions`
+
+Creates/repairs the Culvert Exemptions sheet used for approved vacations.
+
+### `Set up Discord import sessions`
+
+Creates/repairs the hidden Discord Import Sessions sheet.
+
+### `Rebuild Start Here`
+
+Refreshes the in-sheet workflow guide. The current production guide documents the Discord-first import flow and keeps the screenshot-to-CSV process as a manual fallback.
+
+### `Rebuild Dashboard`
+
+Rebuilds the admin Dashboard from confirmed Weekly Data and current Players state.
+
+### `Rebuild Culvert History`
+
+Rebuilds the guild-wide Culvert history matrix.
+
+### `Rebuild Data Audit`
 
 Re-runs data-quality checks against confirmed data.
 
-## `Rebuild Member Profile`
+### `Rebuild Member Profile`
 
-Rebuilds the Member Profile view.
+Rebuilds the Member Profile sheet layout/data while preserving the profile workflow.
 
-## `Refresh profile chart scale`
+### `Refresh profile chart scale`
 
 Refreshes the Member Profile chart scale when needed.
-
-Other setup items in this submenu create or repair machine-managed tracker sheets and fields. They are normally only needed during initial setup or troubleshooting.
