@@ -1,173 +1,190 @@
 # Discord Command Reference
 
-## Permission levels
+## Permission model
 
-### Member
+### Member access
 
-`/me` is available to eligible Tiger members and admins.
+`/me` has its own access rules.
 
-### Admin
+Inside the Tiger Discord server, it is available to a member with the configured Tiger role, a Tiger Admin, or the configured owner.
 
-Admin-only commands are restricted to authorised Tiger or Discord admins.
+Outside the Tiger server, the Discord account must be linked to an Active player in the Players sheet. The configured owner bypasses the Active requirement.
 
-## Visibility
+### Admin access
 
-- **Private** means only the person running the command sees the result.
-- **Public** means the channel can see the result.
-- Commands marked **Private by default** can be made public with `public:true`.
+The following count as admin access:
+
+- configured Tiger Admin role
+- configured Discord Admin role
+- configured owner
+
+When an admin command is used outside the Tiger server, the Worker checks the caller's roles in the Tiger guild through Discord's REST API.
+
+## Slash commands
+
+### `/me [public]`
+
+Shows the caller's Tiger member profile.
+
+The profile can include current IGN, job, recent Culvert performance, personal best data, participation information, Discord link state, and current/upcoming vacation exemption information.
+
+**Permission:** Member access rules above.
+
+**Visibility:** Private by default. Set `public:true` to show it to the channel.
 
 ---
 
-# Slash commands
-
-## `/me [public]`
-
-Shows your Tiger profile.
-
-The profile can include IGN, job, recent Culvert results, personal-best information, participation information, Discord link state, and current/upcoming vacation exemptions.
-
-**Permission:** Member  
-**Visibility:** Private by default. Use `public:true` to show it in the channel.
-
----
-
-## `/whois member [public]`
+### `/whois member [public]`
 
 Shows another linked member's Tiger profile.
 
 **Arguments:**
 
-- `member`, required
-- `public`, optional
+- `member`, required Discord member
+- `public`, optional boolean
 
-**Permission:** Admin  
-**Visibility:** Private by default. Use `public:true` to show it in the channel.
+**Permission:** Admin.
+
+**Visibility:** Private by default. Set `public:true` to show it to the channel.
 
 ---
 
-## `/weekly [week]`
+### `/weekly [week]`
 
-Posts the combined Tiger weekly Culvert update.
+Posts the combined Tiger weekly Culvert update. This is the normal weekly public post for `#tiger-culvert`.
 
-This is the normal weekly public post for `#tiger-culvert`.
+The optional `week` field supports autocomplete and fuzzy Tiger week lookup.
 
-The optional week field supports autocomplete and fuzzy Tiger-week lookup.
-
-Examples:
+Accepted examples include:
 
 - `19 Sep`
 - `Sep 19`
 - `19/9`
 - `9/19`
 
-If a numeric date is genuinely ambiguous, Tiger asks for a clearer date rather than guessing.
+Ambiguous numeric dates are rejected rather than guessed.
 
-**Permission:** Admin  
-**Visibility:** Public
+**Permission:** Admin.
 
----
-
-## `/summary [week]`
-
-Shows the guild weekly Culvert summary for the selected or newest available week.
-
-**Permission:** Admin  
-**Visibility:** Public  
-**Normal use:** Optional lookup or post in regular chat.
+**Visibility:** Public.
 
 ---
 
-## `/leaderboard [week]`
+### `/summary [week]`
 
-Shows the Tiger Culvert leaderboard for the selected or newest available week.
+Shows the guild weekly Culvert summary for the selected week or the newest available week.
 
-**Permission:** Admin  
-**Visibility:** Public  
-**Normal use:** Optional lookup or post in regular chat.
+**Permission:** Admin.
 
----
+**Visibility:** Public.
 
-## `/milestones [week]`
-
-Shows weekly Tiger Culvert milestone statistics.
-
-**Permission:** Admin  
-**Visibility:** Public  
-**Normal use:** Optional lookup or post in regular chat.
+**Normal use:** Optional lookup/post in regular chat. The standard weekly channel post is `/weekly`.
 
 ---
 
-# Vacation commands
+### `/leaderboard [week]`
 
-## `/vacation add member date_format start end [note]`
+Shows the Tiger Culvert leaderboard for the selected week or newest available week.
+
+**Permission:** Admin.
+
+**Visibility:** Public.
+
+**Normal use:** Optional lookup/post in regular chat.
+
+---
+
+### `/milestones [week]`
+
+Shows Tiger weekly Culvert milestones for the selected week or newest available week.
+
+**Permission:** Admin.
+
+**Visibility:** Public.
+
+**Normal use:** Optional lookup/post in regular chat.
+
+---
+
+## Vacation commands
+
+### `/vacation add member date_format start end [note]`
 
 Records an approved vacation exemption.
 
 **Arguments:**
 
-- `member`, required
+- `member`, required Discord member
 - `date_format`, required, `MM/DD/YYYY` or `DD/MM/YYYY`
 - `start`, required
 - `end`, required
-- `note`, optional admin note
+- `note`, optional admin note stored in the sheet
 
-**Permission:** Admin  
-**Visibility:** Successful confirmation is public. Input errors are private.
+Tiger converts the dates to canonical values and stores the exact Tiger weeks covered by the exemption.
+
+**Permission:** Admin.
+
+**Visibility:** Successful confirmation is public. Input validation failures are private.
 
 **Effects:**
 
-- current/upcoming exemptions can appear in member profile information
+- appears in member profile information while current/upcoming
 - excused zeroes do not count as normal attendance misses
 - zero-score role scans exclude the member during excused weeks
-- a complete zero scan can remove an existing Culvert reminder role when appropriate
+- full zero scans can remove an existing Culvert role if appropriate
 
 ---
 
-## `/vacation remove member`
+### `/vacation remove member`
 
-Cancels current and upcoming approved vacation exemptions for the selected member.
+Cancels current and upcoming approved vacation exemptions for the selected member. Historical records remain in the sheet as cancelled records rather than being deleted.
 
-Past records remain for history.
+**Permission:** Admin.
 
-**Permission:** Admin  
-**Visibility:** Private
-
----
-
-## `/vacation list [member] [public]`
-
-Lists current and upcoming Tiger vacations.
-
-An optional member filter can limit the result to one member.
-
-**Permission:** Admin  
-**Visibility:** Private by default. Use `public:true` to show it in the channel.
+**Visibility:** Private.
 
 ---
 
-# Culvert reminder
+### `/vacation list [member] [public]`
 
-## `/culvertreminder`
+Lists current and upcoming Tiger vacations. An optional member can filter the list.
 
-Posts the standard Culvert deadline reminder in the guild's reminder channel and mentions the current Culvert reminder role.
+**Permission:** Admin.
 
-The dynamic deadline points to Thursday **9:50 AM Brisbane time**, 10 minutes before weekly reset.
-
-**Permission:** Admin  
-**Visibility:** The command acknowledgement is private. The reminder itself is public in the reminder channel.
-
-The Discord role may be renamed without changing how the command is used.
+**Visibility:** Private by default. Set `public:true` to show the list in the channel.
 
 ---
 
-# Culvert import administration
+## Culvert reminder
 
-## `/culvertimport status [public]`
+### `/culvertreminder`
 
-Shows your latest Culvert import session, including mode, Tiger week, message count, screenshot count, and status.
+Posts the standard Culvert deadline reminder in the configured reminder channel and mentions the configured Culvert role.
 
-**Permission:** Admin  
-**Visibility:** Private by default. Use `public:true` to show it in the channel.
+The dynamic Discord timestamp targets Thursday **9:50 AM Brisbane time**, 10 minutes before weekly reset.
+
+**Permission:** Admin.
+
+**Visibility:** The command acknowledgement is private. The actual reminder message in the configured reminder channel is public and mentions the role.
+
+**Configuration:**
+
+- `CULVERT_REMINDER_CHANNEL_ID`
+- `CULVERT_PENDING_ROLE_ID`
+
+The environment variable retains the historical `PENDING` name, but the Discord role itself can be renamed freely because the bot uses the role ID.
+
+---
+
+## Culvert import administration
+
+### `/culvertimport status [public]`
+
+Shows the caller's latest Culvert import session, including mode, Tiger week, message count, screenshot count, and current status.
+
+**Permission:** Admin.
+
+**Visibility:** Private by default. Set `public:true` to show the status in the channel.
 
 Common statuses include:
 
@@ -182,25 +199,27 @@ Common statuses include:
 
 ---
 
-## `/culvertimport process`
+### `/culvertimport process`
 
-Processes a saved import waiting for OCR, or retries one that failed during OCR.
+Processes a saved import that is waiting in `READY_FOR_OCR`, or retries one in `OCR_FAILED`.
 
-New imports normally begin OCR automatically when **Finish Culvert Import** is used.
+This is mainly a recovery command. New imports normally start OCR automatically when **Finish Culvert Import** is used.
 
-**Permission:** Admin  
-**Visibility:** Private
+**Permission:** Admin.
+
+**Visibility:** Private.
 
 ---
 
-## `/culvertimport cancel`
+### `/culvertimport cancel`
 
-Cancels your open import session.
+Cancels the caller's open import session.
 
-Use this when the wrong week or mode was selected, or the screenshot collection should be abandoned.
+Use this if the wrong week/mode was selected or the screenshot collection should be abandoned.
 
-**Permission:** Admin  
-**Visibility:** Private
+**Permission:** Admin.
+
+**Visibility:** Private.
 
 ---
 
@@ -210,19 +229,20 @@ Use this when the wrong week or mode was selected, or the screenshot collection 
 
 Partial/test zero-score scan.
 
-Use this when the screenshots may not contain the complete weekly zero list.
+Use it when the supplied screenshot set may not contain the complete weekly zero list.
 
 **Behaviour:**
 
-- scans only the supplied screenshots
+- OCRs only supplied screenshots
 - matches zero-score Tiger players
 - respects vacation exemptions
-- can preview and add the Culvert reminder role
+- can preview/add the Culvert role
 - can report members who already have the role
 - never previews or applies removals
 
-**Permission:** Admin  
-**Visibility:** Validation failures are private. Successful progress, role preview, and Apply/Cancel result are public in the channel.
+**Permission:** Admin.
+
+**Visibility:** Permission/validation failures are private. Successful scan progress, role preview, and Apply/Cancel result are public in the channel.
 
 ---
 
@@ -234,64 +254,78 @@ Use this only when the supplied screenshots represent the complete weekly zero l
 
 **Behaviour:**
 
-- scans the complete zero list
-- checks the current linked roster
+- OCRs the complete zero list
+- checks the active linked roster
 - respects vacation exemptions
-- previews additions
-- previews removals only after safety checks pass
-- creates a short-lived Apply plan
+- previews role additions
+- previews role removals only after all removal safety gates pass
+- creates a 30-minute creator-bound Apply plan
 
-**Permission:** Admin  
-**Visibility:** Validation failures are private. Successful progress, role preview, and Apply/Cancel result are public in the channel.
+**Permission:** Admin.
 
-### Apply rules
+**Visibility:** Permission/validation failures are private. Successful scan progress, role preview, and Apply/Cancel result are public in the channel.
 
-Only the admin who created the preview can use its Apply/Cancel buttons. Apply rechecks current state before changing roles.
+### Apply button rules
+
+Only the admin who created the preview can use the Apply/Cancel buttons. Apply re-verifies admin access and checks current roster/link state before changing roles. Adds happen before removals, and removals do not proceed if required adds fail.
 
 ---
 
 ## `Start Culvert Import`
 
-Starts a full-score, multi-message screenshot import using the selected Discord message as the first batch.
+Starts a full-score multi-message import using the selected Discord message as the first screenshot batch.
 
-Tiger asks you to choose:
+Tiger asks the admin to choose:
 
 - **Current week**
 - **Historical**
 
-Both modes ask for a Tiger-week date.
+Both choices then ask for a Tiger week date.
 
-Current mode only accepts the current Tiger week or the most recently completed Tiger week. Older dates should use Historical mode.
+Current mode only accepts the current Tiger week or the most recently completed Tiger week. Older dates must use Historical mode.
 
-**Permission:** Admin  
-**Visibility:** Private
+**Permission:** Admin.
+
+**Visibility:** Private.
 
 ---
 
 ## `Add to Culvert Import`
 
-Adds another screenshot message to your open import session.
+Adds another screenshot message to the admin's open import session.
 
-The same message or attachment cannot be added twice. One import session supports multiple Discord messages and up to 40 screenshots.
+The same message/attachment cannot be added twice. One session currently supports up to 40 screenshots.
 
-**Permission:** Admin  
-**Visibility:** Private
+**Permission:** Admin.
+
+**Visibility:** Private.
 
 ---
 
 ## `Finish Culvert Import`
 
-Use this on the final screenshot message.
+Use this on the last screenshot message.
 
-Tiger makes sure that final message is included, closes screenshot collection, starts OCR, matches players and aliases, merges safe overlaps, and stages the result in **Import Review**.
+Tiger first makes sure the selected final message is included, then closes screenshot collection and starts full-score OCR.
 
-Conflicting overlaps are sent to `REVIEW` instead of being guessed.
+The OCR pipeline:
 
-**Permission:** Admin  
-**Visibility:** Private
+1. processes all screenshots through Gemini
+2. preserves successful batches if another batch needs retry
+3. matches against Tiger players and aliases
+4. reuses OCR Aliases
+5. merges safe screenshot overlaps
+6. sends conflicting overlaps to REVIEW rather than guessing
+7. stages the result in Import Review
+
+**Permission:** Admin.
+
+**Visibility:** Private.
 
 ---
 
-# Legacy names
+# Removed/legacy command names
 
-Old slash and right-click names may briefly remain visible in Discord because of client caching. Use the command names documented above for normal operation.
+`/culvertzeros` is removed from global registration.
+
+Old right-click names such as `Scan Culvert` remain only as temporary internal compatibility for Discord clients with stale command caches. They are not registered and should not be documented for normal use.
