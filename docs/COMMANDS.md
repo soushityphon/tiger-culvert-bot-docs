@@ -120,7 +120,7 @@ Records an approved vacation exemption.
 - `end`, required
 - `note`, optional admin note stored in the sheet
 
-Tiger converts the dates to canonical values and stores the exact Tiger weeks covered by the exemption.
+Tiger converts the dates to canonical values and stores the exact Tiger weeks covered by the exemption. The Discord confirmation shows the vacation date range with an approximate total duration; detailed excused-week and week-ending rows are not shown in the confirmation.
 
 **Permission:** Admin.
 
@@ -147,7 +147,7 @@ Cancels current and upcoming approved vacation exemptions for the selected membe
 
 ### `/vacation list [member] [public]`
 
-Lists Tiger vacations in separate **On Vacation** and **Upcoming Vacations** sections. Current entries show an approximate number of days left; upcoming entries show an approximate number of days until they start. An optional member can filter the list.
+Lists Tiger vacations in separate **On Vacation** and **Upcoming Vacations** sections. Current entries are ordered by least time remaining and show an approximate number of days left; upcoming entries are ordered by start date and show an approximate number of days until they start. An optional member can filter the list.
 
 **Permission:** Admin.
 
