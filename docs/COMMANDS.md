@@ -326,7 +326,9 @@ The OCR pipeline:
 
 **Permission:** Admin.
 
-**Visibility:** Private.
+**Visibility:** Public once processing starts. Tiger edits the same message through four concise progress steps with per-step ETA. Start/Add setup messages remain private. Processing stalls and terminal failures are public and mention the initiating admin; validation/permission failures remain private where possible.
+
+For **Current week**, the successfully confirmed Import Review roster is authoritative regardless of member count. Every imported player is Active, and previously Active players absent from that roster are set inactive automatically. Historical imports never reconcile Active status.
 
 ---
 

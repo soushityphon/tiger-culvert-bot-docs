@@ -11,21 +11,21 @@ Use this for the normal current guild week.
 5. Choose **Current week**.
 6. Enter a Tiger week date. Wednesday and Thursday boundary dates can resolve to the same stored Thursday week. Current mode accepts only the current Tiger week or the most recently completed Tiger week.
 7. Check the resolved Tiger week shown by the bot.
-8. On each middle screenshot message, use **Add to Culvert Import**.
-9. On the last screenshot message, use **Finish Culvert Import**.
-10. Wait for the bot to report that the import has been staged in **Import Review**.
-11. Open Google Sheets and inspect **Import Review**.
-12. Confirm the Week column is the intended Thursday date.
-13. Resolve every row marked `REVIEW`.
-14. Spot-check a sample of scores, especially high scores, low scores, zeroes, screenshot boundaries, and known OCR Alias players.
-15. Use **Tiger Tracker > Confirm week into Weekly Data**.
-16. If the import is eligible to reconcile the current roster, review the proposed Active/inactive changes before approving them.
+8. On each middle screenshot message, use **Add to Culvert Import**. Start/Add acknowledgements stay private to avoid channel clutter.
+9. On the last screenshot message, use **Finish Culvert Import**. The Finish status is public so other admins can see the import is already being processed.
+10. Watch the public Finish message update through Preparing screenshots, Reading Culvert screenshots, Matching Tiger members, and Staging Import Review. Each step shows a concise ETA where practical. If processing stalls or fails, Tiger posts a readable public error and mentions the initiating admin.
+11. Wait for the bot to report that the import has been staged in **Import Review**.
+12. Open Google Sheets and inspect **Import Review**.
+13. Confirm the Week column is the intended Thursday date.
+14. Resolve every row marked `REVIEW`.
+15. Spot-check a sample of scores, especially high scores, low scores, zeroes, screenshot boundaries, and known OCR Alias players.
+16. Use **Tiger Tracker > Confirm week into Weekly Data**.
 17. Tiger writes Weekly Data and verifies the target week row count and Player IDs.
-18. If verification fails, Tiger attempts to restore the previous Weekly Data state and keeps Import Review.
-19. After core confirmation succeeds, Tiger marks the Discord import session confirmed and clears Import Review automatically.
-20. Dashboard, Culvert History, Data Audit, and Member Profile are refreshed. If a derived view fails to refresh, the confirmation alert names the view needing attention.
-21. When ready, post `/weekly` in `#tiger-culvert`.
-
+18. Because **Current week** is authoritative, Tiger automatically sets every imported player Active and sets previously Active players not present in the import inactive. The imported member count is the guild member count; it does not need to be 200.
+19. If verification fails, Tiger attempts to restore the previous Weekly Data state and keeps Import Review.
+20. After core confirmation succeeds, Tiger marks the Discord import session confirmed and clears Import Review automatically.
+21. Dashboard, Culvert History, Data Audit, and Member Profile are refreshed. If a derived view fails to refresh, the confirmation alert names the view needing attention.
+22. When ready, post `/weekly` in `#tiger-culvert`.
 ### Important
 
 Do not manually clear Import Review after a normal successful confirmation. It clears automatically. The main-menu **Clear Import Review** action remains available to deliberately discard staged data or recover from an abandoned import.
