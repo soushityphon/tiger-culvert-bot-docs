@@ -21,7 +21,7 @@ Use this for the normal current guild week.
 15. Spot-check a sample of scores, especially high scores, low scores, zeroes, screenshot boundaries, and known OCR Alias players.
 16. Use **Tiger Tracker > Confirm week into Weekly Data**.
 17. Tiger writes Weekly Data and verifies the target week row count and Player IDs.
-18. Because **Current week** is authoritative, Tiger automatically sets every imported player Active and sets previously Active players not present in the import inactive. The imported member count is the guild member count; it does not need to be 200.
+18. Because the Discord prompt was set to **Current week**, Tiger treats the confirmed import as the authoritative current guild roster. Every imported Player ID is written as `Active = TRUE`, every other existing player is written as `Active = FALSE`, and the imported member count is the guild member count; it does not need to be 200.
 19. If verification fails, Tiger attempts to restore the previous Weekly Data state and keeps Import Review.
 20. After core confirmation succeeds, Tiger marks the Discord import session confirmed and clears Import Review automatically.
 21. Dashboard, Culvert History, Data Audit, and Member Profile are refreshed. If a derived view fails to refresh, the confirmation alert names the view needing attention.
@@ -151,7 +151,8 @@ Use this only if the Discord screenshot importer is unavailable.
 4. Review Import Review.
 5. Resolve all REVIEW rows.
 6. Confirm into Weekly Data.
-7. Import Review clears automatically after the core confirmation succeeds.
+7. Manual CSV fallback never changes `Players.Active`; automatic roster reconciliation is reserved for Discord imports explicitly started as **Current week**.
+8. Import Review clears automatically after the core confirmation succeeds.
 
 ---
 
