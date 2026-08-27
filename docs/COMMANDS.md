@@ -335,3 +335,6 @@ The OCR pipeline:
 `/culvertzeros` is removed from global registration.
 
 Old right-click names such as `Scan Culvert` remain only as temporary internal compatibility for Discord clients with stale command caches. They are not registered and should not be documented for normal use.
+
+
+> `/culvertreset confirm:true` posts its progress and final result publicly in the channel so other admins can see the reset. Permission and validation errors remain private.
