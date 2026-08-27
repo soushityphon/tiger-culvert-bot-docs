@@ -246,7 +246,7 @@ Processes the zero-score screenshots supplied by the Tiger Admin and treats thos
 **Processing integrity:**
 
 - counts every supplied image
-- processes OCR in batches with six visible numbered workflow steps; ETAs explicitly refer to the next step rather than the whole workflow
+- processes OCR in batches with six visible numbered workflow steps; each numbered stage uses `ETA for this step` so the estimate cannot be mistaken for the whole workflow
 - retries transient OCR failures without reprocessing successful screenshots
 - requires every supplied screenshot to process safely before Apply is available
 - blocks Apply when a zero-score row needs review or a required Discord check is unresolved
