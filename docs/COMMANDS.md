@@ -131,7 +131,7 @@ Tiger converts the dates to canonical values and stores the exact Tiger weeks co
 - appears in member profile information while current/upcoming
 - excused zeroes do not count as normal attendance misses
 - zero-score role scans exclude the member during excused weeks
-- full zero scans can remove an existing Culvert role if appropriate
+- Culvert Reminder can remove an existing role if the member is not in the supplied desired set and all safety checks pass
 
 ---
 
@@ -172,7 +172,7 @@ The dynamic Discord timestamp targets Thursday **9:50 AM Brisbane time**, 10 min
 - `CULVERT_REMINDER_CHANNEL_ID`
 - `CULVERT_PENDING_ROLE_ID`
 
-The environment variable retains the historical `PENDING` name, but the Discord role itself can be renamed freely because the bot uses the role ID.
+The environment variable retains the historical `PENDING` name, but the Discord role itself can be renamed freely because the bot uses the role ID. The same reminder is also posted automatically after a successful Culvert Reminder Apply.
 
 ---
 
@@ -225,49 +225,41 @@ Use this if the wrong week/mode was selected or the screenshot collection should
 
 # Right-click Apps commands
 
-## `Culvert Zeros - Add Only`
+## `Culvert Reminder`
 
-Partial/test zero-score scan.
+Processes the zero-score screenshots supplied by the Tiger Admin and treats those supplied screenshots as the complete desired Culvert Reminder list. Tiger does not try to decide whether the admin forgot to upload a screenshot.
 
-Use it when the supplied screenshot set may not contain the complete weekly zero list.
+**Processing integrity:**
 
-**Behaviour:**
-
-- OCRs only supplied screenshots
-- matches zero-score Tiger players
+- counts every supplied image
+- processes OCR in batches with visible progress and a rough ETA
+- retries transient OCR failures without reprocessing successful screenshots
+- requires every supplied screenshot to process safely before Apply is available
+- blocks Apply when a zero-score row needs review or a required Discord check is unresolved
 - respects vacation exemptions
-- can preview/add the Culvert role
-- can report members who already have the role
-- never previews or applies removals
-
-**Permission:** Admin.
-
-**Visibility:** Permission/validation failures are private. Successful scan progress, role preview, and Apply/Cancel result are public in the channel.
-
----
-
-## `Culvert Zeros`
-
-Complete weekly zero-score scan.
-
-Use this only when the supplied screenshots represent the complete weekly zero list.
-
-**Behaviour:**
-
-- OCRs the complete zero list
-- checks the active linked roster
-- respects vacation exemptions
-- previews role additions
-- previews role removals only after all removal safety gates pass
+- checks the current Discord role state, preferring a bulk guild-member snapshot for speed and falling back to conservative targeted checks if needed
+- previews additions, already-correct members, vacation exemptions and removals
 - creates a 30-minute creator-bound Apply plan
 
+**Apply rules:**
+
+Only the admin who created the preview can use Apply/Cancel. Apply re-verifies admin access, current roster/link fingerprint and affected Discord role state. Adds happen before removals. If any required add fails, removals are skipped.
+
+After post-write verification confirms the affected members, Tiger marks the Apply successful and automatically posts the same reminder used by `/culvertreminder`. No second confirmation is required. If the reminder post itself fails, the role changes remain in place and Tiger pings the issuing admin with the failure reason.
+
+**Progress and failures:**
+
+The public interaction message is edited as OCR, Discord checks and role writes progress. A watchdog warns and pings the issuing admin if visible progress stops for about 90 seconds. Terminal failures ping the issuing admin and include a diagnostic.
+
 **Permission:** Admin.
 
-**Visibility:** Permission/validation failures are private. Successful scan progress, role preview, and Apply/Cancel result are public in the channel.
+**Visibility:** Permission/initial validation failures are private. Successful progress, role preview, Apply/Cancel result, stall warnings and role-workflow failures are public in the source channel.
 
-### Apply button rules
+### Weekly role reset
 
-Only the admin who created the preview can use the Apply/Cancel buttons. Apply re-verifies admin access and checks current roster/link state before changing roles. Adds happen before removals, and removals do not proceed if required adds fail.
+At Thursday **10:05 AM Brisbane time**, Tiger automatically removes the Culvert Reminder role from all current holders and verifies the final guild role state. If the cleanup cannot start, fails, or still has role holders after the watchdog window, Tiger posts a detailed alert in the latest Culvert Reminder source channel and mentions that issuing admin. If no prior source context is available, the configured reminder channel/Tiger Admin role is used as a fallback.
+
+The fast guild-member snapshot requires Discord's privileged **Server Members Intent**. The interactive preview/Apply path can fall back to targeted member checks if the snapshot is unavailable, but the scheduled whole-guild reset needs a complete member snapshot.
 
 ---
 

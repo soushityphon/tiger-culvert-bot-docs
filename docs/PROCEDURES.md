@@ -58,36 +58,30 @@ Historical matching uses current players, former/inactive players, genuine playe
 
 ## 3. Weekly Culvert role workflow
 
-### During the week or for testing
+1. Put the zero-score screenshots that the Tiger Admin wants to use in the selected Discord message. The supplied screenshots are treated as the complete list. If the admin omits a screenshot, manual correction remains the admin's responsibility.
+2. Right-click the message and choose **Apps > Culvert Reminder**.
+3. Watch the public status message. Tiger edits it as OCR batches, roster checks and Discord checks progress, including a rough ETA where there is enough timing data.
+4. Confirm that the screenshot counter reaches the full supplied count. Tiger will not offer Apply if a supplied screenshot failed, an OCR row needs review, or a required Discord check is unresolved.
+5. Review `Would add`, `Already has role`, `Vacation exempt`, and `Would remove`.
+6. If a safety lock appears, use the diagnostic to fix the source issue and run a fresh Culvert Reminder scan.
+7. The admin who created the preview selects **Apply Culvert Role**.
+8. Tiger re-verifies admin access, roster/link fingerprint and affected Discord role state. Adds happen first. Removals only begin if every required add succeeds.
+9. Watch the edited status message during role writes. If the workflow fails or appears stalled, Tiger pings the issuing admin in the same source channel and includes a detailed diagnostic.
+10. After post-write verification confirms the affected members, Tiger marks the Apply successful and automatically posts the normal Culvert deadline reminder. There is no second confirmation.
 
-Use **Culvert Zeros - Add Only** when the screenshot set may be partial.
+Vacation-exempt zero players are excluded from the desired reminder-role set during their excused Tiger weeks.
 
-1. Right-click the message containing zero-score screenshots.
-2. Select **Apps > Culvert Zeros - Add Only**.
-3. Review the public role preview.
-4. Confirm vacation-exempt or unlinked exceptions if shown.
-5. If the preview is correct, the creating admin can select **Apply Culvert Role**.
-6. Add Only can add roles but cannot remove them.
+### Weekly reset cleanup
 
-### Complete weekly zero list
+At Thursday **10:05 AM Brisbane time**, five minutes after the 10:00 reset, Tiger automatically removes the Culvert Reminder role from every member and verifies that nobody still holds it.
 
-Use **Culvert Zeros** only when the screenshot set is the complete weekly zero list.
-
-1. Put the complete zero-score screenshots in one Discord message if possible.
-2. Right-click the message and choose **Apps > Culvert Zeros**.
-3. Wait for OCR and full active-roster role checks.
-4. Review `Would add`, `Already has role`, `Vacation exempt`, and `Would remove` counts.
-5. If a safety lock appears, do not try to work around it. Correct the source issue and run a fresh full scan.
-6. The admin who created the preview selects **Apply Culvert Role**.
-7. Apply rechecks the current roster and affected Discord members before writing roles.
-
-Vacation-exempt zero players are not supposed to carry the reminder role during their excused Tiger weeks.
+If the scheduled cleanup cannot start, fails, or appears stalled, Tiger posts a detailed alert in the latest Culvert Reminder source channel and mentions the admin who issued that scan. If no recent source context exists, Tiger falls back to the configured reminder channel and Tiger Admin role when available.
 
 ---
 
 ## 4. Manual Culvert reminder
 
-Use this whenever admins want to remind members who currently have the configured Culvert role.
+The normal reminder now posts automatically after a successful Culvert Reminder Apply. `/culvertreminder` remains available as a manual/recovery option.
 
 1. Run `/culvertreminder`.
 2. The command acknowledgement is private.
