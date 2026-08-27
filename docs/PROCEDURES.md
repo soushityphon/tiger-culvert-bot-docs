@@ -93,7 +93,7 @@ The Discord role can be renamed without changing the role ID or Cloudflare varia
 
 ### Manual role reset
 
-Use `/culvertreset confirm:true` when an admin needs to remove the Culvert Reminder role from every current holder before the automatic Thursday cleanup. Tiger uses the same cleanup implementation as the scheduled reset: complete guild-member snapshot, safe batched removals, final verification, and the same stall/failure watchdog. The issuing admin receives private progress updates and is pinged in the source channel if the reset cannot complete safely.
+Use `/culvertreset confirm:true` when an admin needs to remove the Culvert Reminder role from every current holder before the automatic Thursday cleanup. Tiger uses the same cleanup implementation as the scheduled reset: complete guild-member snapshot, safe batched removals, final verification, and the same stall/failure watchdog. Progress and successful completion are public in the invoking channel so other admins can see the reset. Permission and validation errors remain private. If the reset cannot complete safely or stalls, Tiger pings the issuing admin in the source channel with the diagnostic reason.
 
 ---
 
