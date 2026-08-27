@@ -26,7 +26,7 @@ When an admin command is used outside the Tiger server, the Worker checks the ca
 
 Shows the caller's Tiger member profile.
 
-The profile can include current IGN, weekly job, Tiger Rank, same-job rank, recent Culvert performance, personal best data, participation information, Discord link state, and current/upcoming vacation exemption information. Tiger Rank and same-job rank use the complete newest Weekly Data roster, including members with a Culvert score of 0; equal scores share the same rank.
+The profile can include current IGN, weekly job, Tiger Rank, same-job rank, recent Culvert performance, personal best data, participation information, Discord link state, and separate On Vacation / Upcoming Vacation date ranges with approximate duration. Tiger Rank and same-job rank use the complete newest Weekly Data roster, including members with a Culvert score of 0; equal scores share the same rank.
 
 **Permission:** Member access rules above.
 
@@ -147,7 +147,7 @@ Cancels current and upcoming approved vacation exemptions for the selected membe
 
 ### `/vacation list [member] [public]`
 
-Lists current and upcoming Tiger vacations. An optional member can filter the list.
+Lists Tiger vacations in separate **On Vacation** and **Upcoming Vacations** sections. Current entries show an approximate number of days left; upcoming entries show an approximate number of days until they start. An optional member can filter the list.
 
 **Permission:** Admin.
 
