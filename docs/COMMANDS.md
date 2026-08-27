@@ -176,6 +176,20 @@ The environment variable retains the historical `PENDING` name, but the Discord 
 
 ---
 
+### `/culvertreset confirm:true`
+
+Manually runs the same whole-guild Culvert Reminder role cleanup used after the weekly reset.
+
+**Permission:** Admin.
+
+**Confirmation:** `confirm:true` is required. `confirm:false` makes no changes.
+
+**Behaviour:** Tiger obtains a complete guild-member snapshot, removes the role in safe queue batches, edits the private command response with progress, then performs a complete final verification. If the reset fails or stalls, Tiger also pings the issuing admin in the channel where the command was run and includes the diagnostic reason.
+
+**Visibility:** Progress and successful completion are private to the issuing admin. Failure/stall alerts are public in the source channel so they cannot be missed.
+
+---
+
 ## Culvert import administration
 
 ### `/culvertimport status [public]`
