@@ -26,7 +26,7 @@ When an admin command is used outside the Tiger server, the Worker checks the ca
 
 Shows the caller's Tiger member profile.
 
-The profile can include current IGN, job, recent Culvert performance, personal best data, participation information, Discord link state, and current/upcoming vacation exemption information.
+The profile can include current IGN, weekly job, Tiger Rank, same-job rank, recent Culvert performance, personal best data, participation information, Discord link state, and current/upcoming vacation exemption information. Tiger Rank and same-job rank use the complete newest Weekly Data roster, including members with a Culvert score of 0; equal scores share the same rank.
 
 **Permission:** Member access rules above.
 
@@ -184,9 +184,9 @@ Manually runs the same whole-guild Culvert Reminder role cleanup used after the 
 
 **Confirmation:** `confirm:true` is required. `confirm:false` makes no changes.
 
-**Behaviour:** Tiger obtains a complete guild-member snapshot, removes the role in safe queue batches, edits the private command response with progress, then performs a complete final verification. If the reset fails or stalls, Tiger also pings the issuing admin in the channel where the command was run and includes the diagnostic reason.
+**Behaviour:** Tiger obtains a complete guild-member snapshot, removes the role in safe queue batches, edits the public command response with progress, then performs a complete final verification. If the reset fails or stalls, Tiger also pings the issuing admin in the channel where the command was run and includes the diagnostic reason.
 
-**Visibility:** Progress and successful completion are private to the issuing admin. Failure/stall alerts are public in the source channel so they cannot be missed.
+**Visibility:** Progress and successful completion are public in the source channel so other admins can see that the reset has been run. Permission and validation failures remain private. Failure/stall alerts are also public in the source channel so they cannot be missed.
 
 ---
 
