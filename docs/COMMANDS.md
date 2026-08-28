@@ -106,6 +106,18 @@ Shows Tiger weekly Culvert milestones for the selected week or newest available 
 
 ---
 
+### `/registercommands`
+
+Re-registers the complete Tiger global Discord command set with Discord. Use this only after a deployment that changes command names, options, or context-menu registrations.
+
+**Permission:** Admin. The request must arrive as a valid signed Discord interaction and then pass the normal Tiger Admin / Discord Admin / owner permission check.
+
+**Visibility:** Private.
+
+**Security:** This is the supported registration path. The old unauthenticated public registration URL is being retired.
+
+---
+
 ## Vacation commands
 
 ### `/vacation add member date_format start end [note]`

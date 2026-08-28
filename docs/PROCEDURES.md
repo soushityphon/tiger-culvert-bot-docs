@@ -201,3 +201,17 @@ Use manual rebuild actions only when:
 - a layout/view appears stale
 
 Weekly Data is the source-of-truth data table. There is no normal procedure to rebuild or wipe Weekly Data.
+
+---
+
+## 11. Re-registering Discord commands
+
+Normal deployments do not need command re-registration unless a Discord command name, option, or context-menu registration changed.
+
+1. Deploy the command/schema change through the normal pull-request workflow.
+2. Run `/registercommands` as a Tiger Admin, Discord Admin, or configured owner.
+3. Wait for the private success confirmation.
+4. Confirm the changed command appears in Discord. Global Discord command propagation may not be instantaneous on every client.
+
+Do not use a public Worker URL to register commands. Command registration is intentionally routed through Discord's signed interaction verification and Tiger's normal admin permission gate.
+
