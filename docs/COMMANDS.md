@@ -114,7 +114,7 @@ Re-registers the complete Tiger global Discord command set with Discord. Use thi
 
 **Visibility:** Private.
 
-**Security:** This is the supported registration path. The old unauthenticated public registration URL is being retired.
+**Security:** This is the supported registration path. The old unauthenticated public registration URL has been retired and can no longer trigger command registration.
 
 ---
 
