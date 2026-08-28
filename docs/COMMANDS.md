@@ -24,7 +24,7 @@ When an admin command is used outside the Tiger server, the Worker checks the ca
 
 ### `/me [public]`
 
-Shows the caller's Tiger member profile.
+Shows the caller's Tiger member profile. If the linked Players row is not Active, Tiger returns a private inactive-profile message and does not show profile data.
 
 The profile can include current IGN, weekly job, Tiger Rank, same-job rank, recent Culvert performance, personal best data, participation information, Discord link state, and separate On Vacation / Upcoming Vacation date ranges with approximate duration. Tiger Rank and same-job rank use the complete newest Weekly Data roster, including members with a Culvert score of 0; equal scores share the same rank.
 
@@ -103,6 +103,26 @@ Shows Tiger weekly Culvert milestones for the selected week or newest available 
 **Visibility:** Public.
 
 **Normal use:** Optional lookup/post in regular chat.
+
+---
+
+### `/health`
+
+Runs a private read-only health check across the Worker, Apps Script API, Discord bot authentication, Tiger bot log channel, OCR queue binding, and Gemini configuration. It also shows a compact tracker snapshot and latest import-session status.
+
+**Permission:** Admin.
+
+**Visibility:** Private.
+
+---
+
+### `/linkaudit`
+
+Runs a private read-only audit of Tiger roster-to-Discord links. It reports Active players missing a Discord User ID, Active linked players not found in the Tiger Discord, duplicate Discord User IDs, and inactive players that still retain a Discord link.
+
+**Permission:** Admin.
+
+**Visibility:** Private.
 
 ---
 
@@ -352,3 +372,9 @@ Old right-click names such as `Scan Culvert` remain only as temporary internal c
 
 
 > `/culvertreset confirm:true` posts its progress and final result publicly in the channel so other admins can see the reset. Permission and validation errors remain private.
+
+## Tiger bot action log
+
+Tiger records top-level Discord bot actions in the configured private bot-log channel. This includes slash commands such as `/me` and `/whois`, admin commands, context-menu actions, Apply/Cancel components, modal submissions, and scheduled Worker triggers. The log records who invoked the action, the source channel/guild, and limited operational details. It deliberately does not copy profile contents, secrets, OCR payloads, or every internal retry/progress edit.
+
+Audit logging is best-effort and is isolated from command execution: a logging failure must not block the user action that triggered it.

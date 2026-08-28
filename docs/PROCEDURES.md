@@ -215,3 +215,8 @@ Normal deployments do not need command re-registration unless a Discord command 
 
 Do not use a public Worker URL to register commands. Command registration is intentionally routed through Discord's signed interaction verification and Tiger's normal admin permission gate.
 
+
+
+## Bot observability checks
+
+Use `/health` for a private read-only check of Worker, Apps Script, Discord, audit-channel, queue and Gemini health. Use `/linkaudit` for roster/Discord-link integrity. Tiger also writes top-level Discord bot actions and scheduled Worker triggers to the private Tiger bot log channel for operational audit history.
