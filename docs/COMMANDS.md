@@ -6,9 +6,9 @@
 
 `/me` has its own access rules.
 
-Inside the Tiger Discord server, it is available to a member with the configured Tiger role, a Tiger Admin, or the configured owner.
+Inside the Tiger Discord server, it is available to a member with the configured Tiger role, a Tiger Admin, or the configured owner, but the linked Players row must also be marked Active.
 
-Outside the Tiger server, the Discord account must be linked to an Active player in the Players sheet. The configured owner bypasses the Active requirement.
+Outside the Tiger server, the Discord account must be linked to an Active player in the Players sheet. `/me` has no owner or admin bypass for the Active requirement.
 
 ### Admin access
 
