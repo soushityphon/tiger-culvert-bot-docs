@@ -148,6 +148,20 @@ Runs a private read-only audit of Tiger roster-to-Discord links. It reports Acti
 
 ---
 
+### `/nexonaudit`
+
+Runs a private, read-only audit of every Active Tiger player against Nexon GMS character ranking data. Tiger looks up the exact Current IGN, compares the returned character name and Job, checks whether the Nexon Level is plausible against the newest Weekly Data level, and verifies that Nexon returned a trusted character PNG URL.
+
+The audit runs in safe queue batches and edits the same Discord response with progress until the complete Active roster has been checked. It does not change Players, Weekly Data, Import Review, Discord links, or any other tracker data.
+
+**Level review rule:** Nexon being lower than Tiger, or more than 10 levels ahead, is flagged for admin review. This is identity-quality checking only; Nexon does not become authoritative for Tiger levels.
+
+**Permission:** Admin.
+
+**Visibility:** Private.
+
+---
+
 ### `/registercommands`
 
 Re-registers the complete Tiger global Discord command set with Discord. Use this only after a deployment that changes command names, options, or context-menu registrations.
