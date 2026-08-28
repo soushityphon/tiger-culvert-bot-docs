@@ -116,6 +116,28 @@ Runs a private read-only health check across the Worker, Apps Script API, Discor
 
 ---
 
+### `/link add member player`
+
+Links an Active Tiger player to a Discord member directly from Discord. `player` must be the exact current IGN or Player ID. Tiger verifies that the selected Discord account is currently in the configured Tiger server, refuses duplicate/conflicting identity links, writes both Discord Username and Discord User ID, and verifies the write before reporting success.
+
+**Permission:** Admin.
+
+**Visibility:** Private.
+
+**Safety:** Tiger does not fuzzy-match or use aliases for this write. If the player or Discord account is already linked differently, remove the existing link first.
+
+---
+
+### `/link remove player`
+
+Removes both Discord Username and Discord User ID from the selected Tiger player. This is allowed for Active or inactive players so stale links found by `/linkaudit` can be cleaned up without editing the Sheet.
+
+**Permission:** Admin.
+
+**Visibility:** Private.
+
+---
+
 ### `/linkaudit`
 
 Runs a private read-only audit of Tiger roster-to-Discord links. It reports Active players missing a Discord User ID, Active linked players not found in the Tiger Discord, duplicate Discord User IDs, and inactive players that still retain a Discord link.

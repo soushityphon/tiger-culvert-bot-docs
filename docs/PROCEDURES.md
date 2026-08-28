@@ -1,5 +1,21 @@
 # Operating Procedures
 
+## Discord member linking / onboarding
+
+Use this when an Active Tiger player needs their Discord account linked or corrected.
+
+1. Run `/link add`.
+2. Select the Discord member.
+3. Enter the player's exact current IGN or Player ID.
+4. Tiger verifies the caller is an admin, the player is Active, the Discord account is currently in the Tiger server, and neither side conflicts with another existing link.
+5. Tiger writes Discord Username and Discord User ID to Players and verifies the write before confirming success.
+6. Run `/me` as the member or `/whois` as an admin if a profile-path check is useful.
+7. Run `/linkaudit` to confirm no duplicate or missing-link issue remains.
+
+If the wrong account is linked, run `/link remove player:<IGN or Player ID>` first, then add the correct account. `/link remove` can also clean stale links from inactive players.
+
+---
+
 ## 1. Normal weekly Culvert import
 
 Use this for the normal current guild week.
