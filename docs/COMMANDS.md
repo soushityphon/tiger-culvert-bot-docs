@@ -156,6 +156,8 @@ Runs a private, read-only audit of every Active Tiger player against Nexon GMS c
 
 The audit runs in safe queue batches and edits the same Discord response with progress until the complete Active roster has been checked. It does not change Players, Weekly Data, Import Review, Discord links, or any other tracker data.
 
+If the primary overall-weekly ranking lookup returns no character, Tiger automatically tries the legacy job-ranking lookup before reporting `NOT_FOUND`. Identity, Job, Level and trusted-image validation remain unchanged. The final audit also reports how many valid matches came from the primary and fallback endpoints.
+
 **Level review rule:** Nexon being lower than Tiger, or more than 10 levels ahead, is flagged for admin review. This is identity-quality checking only; Nexon does not become authoritative for Tiger levels.
 
 **Permission:** Admin.
