@@ -26,7 +26,9 @@ When an admin command is used outside the Tiger server, the Worker checks the ca
 
 Shows the caller's Tiger member profile. If the linked Players row is not Active, Tiger returns a private inactive-profile message and does not show profile data.
 
-The profile can include current IGN, weekly job, Tiger Rank, same-job rank, recent Culvert performance, personal best data, participation information, Discord link state, and separate On Vacation / Upcoming Vacation date ranges with approximate duration. Tiger Rank and same-job rank use the complete newest Weekly Data roster, including members with a Culvert score of 0; equal scores share the same rank.
+The profile can include current IGN, weekly job, Tiger Rank, same-job rank, recent Culvert performance, personal best data, participation information, Discord link state, and separate On Vacation / Upcoming Vacation date ranges with approximate duration. When Nexon returns a validated GMS character record, the profile also shows the Nexon character image as the top-right thumbnail. Tiger Rank and same-job rank use the complete newest Weekly Data roster, including members with a Culvert score of 0; equal scores share the same rank.
+
+If a character is not available through the Nexon rankings lookup, Nexon is unavailable, or the returned identity does not validate against Tiger data, the profile still renders normally with no thumbnail. The Culvert graph remains the main profile image.
 
 **Permission:** Member access rules above.
 
@@ -36,7 +38,7 @@ The profile can include current IGN, weekly job, Tiger Rank, same-job rank, rece
 
 ### `/whois member [public]`
 
-Shows another linked member's Tiger profile.
+Shows another linked member's Tiger profile. It uses the same optional validated Nexon character thumbnail and failure-safe fallback as `/me`.
 
 **Arguments:**
 
