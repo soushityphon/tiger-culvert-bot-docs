@@ -166,6 +166,7 @@ If the primary overall-weekly ranking lookup returns no character, Tiger automat
 
 ---
 
+
 ### `/registercommands`
 
 Re-registers the complete Tiger global Discord command set with Discord. Use this only after a deployment that changes command names, options, or context-menu registrations.
