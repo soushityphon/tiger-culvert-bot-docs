@@ -89,9 +89,9 @@ Vacation-exempt zero players are excluded from the desired reminder-role set dur
 
 ### Weekly reset cleanup
 
-At Thursday **10:05 AM Brisbane time**, five minutes after the 10:00 reset, Tiger automatically removes the Culvert Reminder role from every member and verifies that nobody still holds it.
+At Thursday **10:05 AM Brisbane time**, five minutes after the 10:00 reset, Tiger automatically removes the Culvert Reminder role from every member and verifies that nobody still holds it. A 10:15 safety cron checks the persisted outcome and retries the same cleanup only if the 10:05 run did not record success.
 
-If the scheduled cleanup cannot start, fails, or appears stalled, Tiger posts a detailed alert in the latest Culvert Reminder source channel and mentions the admin who issued that scan. If no recent source context exists, Tiger falls back to the configured reminder channel and Tiger Admin role when available.
+If the scheduled cleanup cannot start, fails, or appears stalled, Tiger posts a detailed alert in the latest Culvert Reminder source channel and mentions the admin who issued that scan. If that alert fails, Tiger uses the private bot-log channel as an independent fallback. If no recent source context exists, Tiger falls back to the configured reminder channel and Tiger Admin role when available.
 
 ---
 
@@ -109,7 +109,7 @@ The Discord role can be renamed without changing the role ID or Cloudflare varia
 
 ### Manual role reset
 
-Use `/culvertreset confirm:true` when an admin needs to remove the Culvert Reminder role from every current holder before the automatic Thursday cleanup. Tiger uses the same cleanup implementation as the scheduled reset: complete guild-member snapshot, safe batched removals, final verification, and the same stall/failure watchdog. Progress and successful completion are public in the invoking channel so other admins can see the reset. Permission and validation errors remain private. If the reset cannot complete safely or stalls, Tiger pings the issuing admin in the source channel with the diagnostic reason.
+Use `/culvertreset confirm:true` when an admin needs to remove the Culvert Reminder role from every current holder before the automatic Thursday cleanup. Tiger uses the same cleanup implementation as the scheduled reset: complete guild-member snapshot, safe batched removals, final verification, and the same stall/failure watchdog. Add `scheduled_test:true` to test the scheduled status, audit and alert wrapper before Thursday. Progress and successful completion are public in the invoking channel so other admins can see the reset. Permission and validation errors remain private. If the reset cannot complete safely or stalls, Tiger pings the issuing admin in the source channel with the diagnostic reason.
 
 ---
 
@@ -235,4 +235,4 @@ Do not use a public Worker URL to register commands. Command registration is int
 
 ## Bot observability checks
 
-Use `/health` for a private read-only check of Worker, Apps Script, Discord, audit-channel, queue and Gemini health. Use `/linkaudit` for roster/Discord-link integrity. Tiger also writes top-level Discord bot actions and scheduled Worker triggers to the private Tiger bot log channel for operational audit history.
+Use `/health` for a private read-only check of Worker, Apps Script, Discord, audit-channel, queue and Gemini health. It also shows the latest persisted scheduled Culvert reset outcome. Use `/linkaudit` for roster/Discord-link integrity. Tiger writes top-level Discord bot actions and scheduled reset start/success/failure outcomes to the private Tiger bot log channel for operational audit history.

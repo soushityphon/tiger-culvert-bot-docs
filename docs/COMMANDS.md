@@ -110,7 +110,7 @@ Shows Tiger weekly Culvert milestones for the selected week or newest available 
 
 ### `/health`
 
-Runs a private read-only health check across the Worker, Apps Script API, Discord bot authentication, Tiger bot log channel, OCR queue binding, and Gemini configuration. It also shows a compact tracker snapshot and latest import-session status.
+Runs a private read-only health check across the Worker, Apps Script API, Discord bot authentication, Tiger bot log channel, OCR queue binding, and Gemini configuration. It also shows a compact tracker snapshot, latest import-session status, and the persisted outcome of the latest scheduled Culvert role reset.
 
 **Permission:** Admin.
 
@@ -249,9 +249,9 @@ The environment variable retains the historical `PENDING` name, but the Discord 
 
 ---
 
-### `/culvertreset confirm:true`
+### `/culvertreset confirm:true [scheduled_test]`
 
-Manually runs the same whole-guild Culvert Reminder role cleanup used after the weekly reset.
+Manually runs the same whole-guild Culvert Reminder role cleanup used after the weekly reset. Set `scheduled_test:true` to also exercise the scheduled lifecycle wrapper, persistent status, and private outcome logging.
 
 **Permission:** Admin.
 
@@ -344,7 +344,9 @@ The public interaction message is edited as OCR, Discord checks and role writes 
 
 ### Weekly role reset
 
-At Thursday **10:05 AM Brisbane time**, Tiger automatically removes the Culvert Reminder role from all current holders and verifies the final guild role state. If the cleanup cannot start, fails, or still has role holders after the watchdog window, Tiger posts a detailed alert in the latest Culvert Reminder source channel and mentions that issuing admin. If no prior source context is available, the configured reminder channel/Tiger Admin role is used as a fallback.
+At Thursday **10:05 AM Brisbane time**, Tiger automatically removes the Culvert Reminder role from all current holders and verifies the final guild role state. It records started, queued, succeeded or failed state with a run ID, times and safe counts, and shows the latest result in `/health`. A **10:15 AM Brisbane** safety cron reruns the same cleanup only when the 10:05 run did not record success.
+
+If the cleanup cannot start, fails, or still has role holders after the watchdog window, Tiger posts a detailed alert in the latest Culvert Reminder source channel and mentions that issuing admin. If the normal alert fails, Tiger sends an independent fallback alert to the private bot-log channel. If no prior source context is available, the configured reminder channel/Tiger Admin role is used.
 
 The fast guild-member snapshot requires Discord's privileged **Server Members Intent**. The interactive preview/Apply path can fall back to targeted member checks if the snapshot is unavailable, but the scheduled whole-guild reset needs a complete member snapshot.
 
@@ -412,7 +414,7 @@ For **Current week**, the successfully confirmed Import Review roster is authori
 Old right-click names such as `Scan Culvert` remain only as temporary internal compatibility for Discord clients with stale command caches. They are not registered and should not be documented for normal use.
 
 
-> `/culvertreset confirm:true` posts its progress and final result publicly in the channel so other admins can see the reset. Permission and validation errors remain private.
+> `/culvertreset confirm:true` posts its progress and final result publicly in the channel so other admins can see the reset. Add `scheduled_test:true` when testing the automatic wrapper. Permission and validation errors remain private.
 
 ## Tiger bot action log
 
