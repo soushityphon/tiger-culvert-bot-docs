@@ -421,3 +421,8 @@ Old right-click names such as `Scan Culvert` remain only as temporary internal c
 Tiger records top-level Discord bot actions in the configured private bot-log channel. This includes slash commands such as `/me` and `/whois`, admin commands, context-menu actions, Apply/Cancel components, modal submissions, and scheduled Worker triggers. The log records who invoked the action, the source channel/guild, and limited operational details. It deliberately does not copy profile contents, secrets, OCR payloads, or every internal retry/progress edit.
 
 Audit logging is best-effort and is isolated from command execution: a logging failure must not block the user action that triggered it.
+
+
+### Culvert Reminder OCR handling
+
+Unlisted OCR names do not block Culvert Reminder Apply. Names that do not resolve to the authoritative Players roster are shown in the preview and ignored for role targeting. Known roster rows that remain ambiguous, incomplete scans, or unresolved Discord checks still block Apply.
