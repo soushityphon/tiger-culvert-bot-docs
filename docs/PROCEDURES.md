@@ -89,7 +89,7 @@ Vacation-exempt zero players are excluded from the desired reminder-role set dur
 
 ### Weekly reset cleanup
 
-At Thursday **10:05 AM Brisbane time**, five minutes after the 10:00 reset, Tiger automatically removes the Culvert Reminder role from every member and verifies that nobody still holds it. A 10:15 safety cron checks the persisted outcome and retries the same cleanup only if the 10:05 run did not record success.
+At Thursday **10:05 AM Brisbane time**, five minutes after the 10:00 reset, Tiger automatically removes the Culvert Reminder role from every member and verifies that nobody still holds it. A 10:15 safety cron checks the persisted outcome and retries if the primary run is absent or failed, while avoiding duplicate work when the primary cleanup is still running. An hourly Thursday recovery check at minute 35 runs later that day only when no reset attempt was recorded for the current Brisbane date, which recovers from missed exact Cron Trigger delivery after a Worker deployment.
 
 If the scheduled cleanup cannot start, fails, or appears stalled, Tiger posts a detailed alert in the latest Culvert Reminder source channel and mentions the admin who issued that scan. If that alert fails, Tiger uses the private bot-log channel as an independent fallback. If no recent source context exists, Tiger falls back to the configured reminder channel and Tiger Admin role when available.
 
@@ -235,4 +235,4 @@ Do not use a public Worker URL to register commands. Command registration is int
 
 ## Bot observability checks
 
-Use `/health` for a private read-only check of Worker, Apps Script, Discord, audit-channel, queue and Gemini health. It also shows the latest persisted scheduled Culvert reset outcome. Use `/linkaudit` for roster/Discord-link integrity. Tiger writes top-level Discord bot actions and scheduled reset start/success/failure outcomes to the private Tiger bot log channel for operational audit history.
+Use `/health` for a private read-only check of Worker, Apps Script, Discord, audit-channel, queue and Gemini health. It also shows the latest persisted scheduled Culvert reset outcome and flags when the expected Thursday reset date has no recorded attempt after the grace window. Use `/linkaudit` for roster/Discord-link integrity. Tiger writes top-level Discord bot actions and scheduled reset start/success/failure outcomes to the private Tiger bot log channel for operational audit history.
