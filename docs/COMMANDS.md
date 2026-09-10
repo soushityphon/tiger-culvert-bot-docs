@@ -426,3 +426,7 @@ Audit logging is best-effort and is isolated from command execution: a logging f
 ### Culvert Reminder OCR handling
 
 Unlisted OCR names do not block Culvert Reminder Apply. Names that do not resolve to the authoritative Players roster are shown in the preview and ignored for role targeting. Known roster rows that remain ambiguous, incomplete scans, or unresolved Discord checks still block Apply.
+
+## Culvert import failure recovery
+
+Current import failures include a short `IMP-...` reference, the saved session state and one retry class: `SAFE_TO_RETRY`, `WAIT_AND_RETRY`, `DO_NOT_RETRY`, or `NEEDS_SOUSHI`. Follow the action shown in Discord. Do not ask admins to inspect GitHub, Cloudflare or Apps Script, only Soushi has that access.
