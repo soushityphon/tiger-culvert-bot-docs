@@ -20,6 +20,22 @@ The following count as admin access:
 
 When an admin command is used outside the Tiger server, the Worker checks the caller's roles in the Tiger guild through Discord's REST API.
 
+## Failure and recovery messages
+
+Substantial Tiger operations use a short `Reference` such as `IMP-*`, `CUL-*`, `CRR-*`, or another workflow-specific ID. The same reference is used in Tiger's private lifecycle log so Soushi can trace the exact run without asking an admin to inspect infrastructure.
+
+When Tiger reports a failure, read the **State** and **Next** guidance before doing anything else:
+
+- If Tiger explicitly says the action is safe to retry, retry only the named action and only as instructed.
+- If Tiger says to wait, do not start a second copy of the workflow. Use the stated status/check command when one is provided.
+- If Tiger says not to retry or to send the details to Soushi, stop there and pass Soushi the full reference/diagnostic block.
+- Do not try to repair GitHub, Cloudflare, Worker bindings, source code, or private logs. Those systems are handled by Soushi.
+- A diagnostic is supporting information, not an instruction to edit the tracker or Discord manually. Follow the explicit **Next** instruction instead.
+
+If Discord itself shows only **The application did not respond** and Tiger provided no state-aware message, do not assume a write command is safe to repeat. For Culvert imports, use `/culvertimport status` first. For other write/role workflows, pass the command name, approximate time, and any visible Tiger reference to Soushi before repeating the action unless the workflow has a documented read-only state check.
+
+---
+
 ## Slash commands
 
 ### `/me [public]`

@@ -1,5 +1,28 @@
 # Operating Procedures
 
+## When Tiger reports a failure
+
+Tiger's reliability messages are designed so an admin can decide what to do without access to GitHub, Cloudflare, source code, or private logs.
+
+1. Read the **State** line first. It tells you whether Tiger knows that nothing changed, something completed, work may still be running, or completion is uncertain.
+2. Follow the **Next** instruction exactly. Retry only when Tiger says the named action is safe to retry.
+3. If Tiger says **wait**, do not start a second run. Use the status/check command named in the message when available.
+4. If Tiger says **do not retry** or **send this to Soushi**, copy the full diagnostic block, especially the `Reference`, workflow/stage, state and diagnostic code, and send it to Soushi.
+5. Do not ask another admin to change Cloudflare, GitHub, Worker settings, source code, or private logs. Only Soushi handles those systems.
+6. Do not make a manual Sheet/role change merely because a diagnostic mentions that subsystem. The diagnostic identifies the failure for Soushi; the **Next** line is the operator instruction.
+
+### If Discord only says `The application did not respond`
+
+A generic Discord timeout does not prove that Tiger did nothing. The operation may have continued after Discord stopped waiting.
+
+- For a Culvert import, run `/culvertimport status` before repeating **Finish Culvert Import**. If the session is still running, wait. If Import Review has already been staged, do not Finish again. Follow Tiger's current status/recovery guidance instead.
+- For a role/write workflow with no read-only status command, do not blindly repeat the action. Send Soushi the command/action, approximate time, channel, and any Tiger reference that appeared.
+- For a clearly read-only command, a later retry is lower risk, but still follow any Tiger message that gave more specific guidance.
+
+The `Reference` is the key handoff value. It lets Soushi match the admin-facing failure to Tiger's private lifecycle record without exposing credentials, interaction tokens, attachment URLs, or raw provider responses.
+
+---
+
 ## Discord member linking / onboarding
 
 Use this when an Active Tiger player needs their Discord account linked or corrected.
