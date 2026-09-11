@@ -232,6 +232,8 @@ Cancels current and upcoming approved vacation exemptions for the selected membe
 
 **Visibility:** Private.
 
+**Recovery after an uncertain write:** Run `/vacation list` for the same member before repeating a vacation write. For add, if the exact dates are already listed, do not add them again; if they are absent, the same add can be repeated. For remove, if no current/upcoming vacation remains, do not repeat the removal; if the intended records remain, repeat `/vacation remove`.
+
 ---
 
 ### `/vacation list [member] [public]`
