@@ -37,6 +37,8 @@ Use this when an Active Tiger player needs their Discord account linked or corre
 
 If the wrong account is linked, run `/link remove player:<IGN or Player ID>` first, then add the correct account. `/link remove` can also clean stale links from inactive players.
 
+Applicants and visitors who use `/iam` before joining Tiger remain in the separate `Discord Onboarding` sheet. That record is onboarding and audit data only. It does not make them an Active Tiger Player. When a pre-onboarded applicant later enters the authoritative roster through the normal Current Culvert import, follow the new-member steps in section 8. A unique safe `/iam` identity is then promoted to the new Player automatically.
+
 ---
 
 ## 1. Normal weekly Culvert import
@@ -205,15 +207,26 @@ Use this only if the Discord screenshot importer is unavailable.
 
 ### New current member
 
-1. Select the unresolved Import Review row.
-2. Use **Tiger Tracker > Add selected as active player**.
+1. Applicants can remain in `Discord Onboarding` while they are applying. Do not manually copy them into Players before they actually enter Tiger's authoritative roster.
+2. Import the Current Culvert roster normally so the new IGN reaches **Import Review**.
+3. Select the unresolved Import Review row.
+4. Use **Tiger Tracker > Add selected as active player**.
+5. Tiger creates the canonical Player ID first.
+6. If exactly one safe `/iam` onboarding row matches the new Current IGN, Tiger reuses that saved Discord identity, writes the verified Discord link to Players, then backfills the same onboarding row with the canonical Player ID and Current IGN. Nickname, current guild, reason, details and onboarding audit timestamps remain intact.
+7. If no onboarding identity exists, the Player is created normally. The existing Discord-links-needed follow-up will still direct admins to `/link` later.
+8. If Tiger reports **onboarding identity needs review**, do not overwrite Player or onboarding data by hand. Resolve the duplicate or conflicting identity first, then use `/link` if a manual correction is required.
+9. If Tiger reports that the Player Discord link succeeded but onboarding backfill needs repair, keep the valid Players link. Repair the onboarding row after the Sheet issue is resolved. Do not remove or repeat the valid link just to make the audit row match.
+10. Continue with the normal import. **Confirm week into Weekly Data** uses the Player ID already created in Import Review and does not perform a second identity guess.
+
+Safe automatic promotion requires one case-insensitive onboarding IGN match, a valid Discord User ID, an onboarding Player ID that is blank or already matches the new Player, an Active target Player, and no conflicting Player or Discord relationship. Ambiguous data always fails closed.
 
 ### Historical/former member
 
 1. Select the unresolved Import Review row.
 2. Use **Tiger Tracker > Add selected as former player**.
+3. Historical/former creation does not promote a `Discord Onboarding` identity into Players.
 
-The guided **Add selected row as new player** action remains available under Review / Maintenance as an optional fallback.
+The guided **Add selected row as new player** action remains available under Review / Maintenance as an optional fallback. Choosing Active uses the same safe onboarding promotion. Choosing historical/former does not.
 
 ---
 

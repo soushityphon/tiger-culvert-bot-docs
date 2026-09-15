@@ -14,11 +14,19 @@ The Discord screenshot importer is the normal workflow. Keep CSV import as a fal
 
 From an Import Review row, creates a new Players record marked Active and resolves the selected review row to that Player ID.
 
+If the same current IGN already has exactly one safe `/iam` record in `Discord Onboarding`, this action also reuses that Discord identity. The matching onboarding row keeps its audit metadata, gains the new canonical Player ID and canonical Current IGN, and the new Players row receives the saved Discord Username and Discord User ID through the normal verified link path.
+
+The automatic match is deliberately conservative. Duplicate onboarding IGNs, malformed Discord IDs, an onboarding row already bound to another Player, a Discord account linked to another Player, or a target Player linked to another Discord account are not overwritten. The Player is still created, but the Sheet reports that the onboarding identity needs review. Resolve the conflict first, then use `/link` if a manual correction is required.
+
+If the Players Discord link succeeds but the onboarding-row backfill fails, keep the valid Players link. The Sheet reports the partial state so the onboarding row can be repaired without repeating or undoing the link.
+
+Players who never completed `/iam` are added normally and continue through the existing `/link` follow-up.
+
 ### `Add selected as former player`
 
 From an Import Review row, creates a new Players record marked inactive/former and resolves the selected review row.
 
-Use this for historical players who should not become current guild members.
+Use this for historical players who should not become current guild members. Historical/former creation never promotes a `Discord Onboarding` identity.
 
 ### `Confirm week into Weekly Data`
 
@@ -36,6 +44,8 @@ Core safety steps include:
 - the target Weekly Data week is re-read and verified after writing
 - on write-verification failure, Tiger attempts to restore the pre-confirm Weekly Data snapshot
 - Import Review clears automatically only after core confirmation succeeds
+
+`Confirm week` does not guess onboarding identities. New-member identity promotion belongs to the explicit `Add selected as active player` action that creates the canonical Player. Confirmation then continues with that Player ID as normal.
 
 ### `Clear Import Review`
 
@@ -107,7 +117,7 @@ Resolves the selected Import Review row to the chosen/entered player and can tea
 
 Guided fallback that asks whether the new player should be Active or historical/former.
 
-This overlaps with the two main-menu Add selected actions and is retained as an optional helper.
+This overlaps with the two main-menu Add selected actions and is retained as an optional helper. Choosing Active uses the same safe onboarding-to-Players reconciliation as the main `Add selected as active player` action. Choosing historical/former does not promote onboarding identity.
 
 ### `Preview roster changes`
 
