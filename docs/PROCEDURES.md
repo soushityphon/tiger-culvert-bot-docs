@@ -114,7 +114,7 @@ Vacation-exempt zero players are excluded from the desired reminder-role set dur
 
 ### Weekly reset cleanup
 
-At Thursday **10:05 AM Brisbane time**, five minutes after the 10:00 reset, Tiger automatically removes the Culvert Reminder role from every member and verifies that nobody still holds it. A 10:15 safety cron checks the persisted outcome and retries if the primary run is absent or failed, while avoiding duplicate work when the primary cleanup is still running. An hourly Thursday recovery check at minute 35 runs later that day only when no reset attempt was recorded for the current Brisbane date, which recovers from missed exact Cron Trigger delivery after a Worker deployment.
+At Thursday **00:05 UTC**, five minutes after the 00:00 UTC reset, Tiger automatically removes the Culvert Reminder role from every member and verifies that nobody still holds it. A 00:15 UTC safety cron checks the persisted outcome and retries if the primary run is absent or failed, while avoiding duplicate work when the primary cleanup is still running. An hourly Thursday recovery check from 00:35 to 13:35 UTC runs only when no reset attempt was recorded for the current UTC reset date, which recovers from missed exact Cron Trigger delivery after a Worker deployment.
 
 If the scheduled cleanup cannot start, fails, or appears stalled, Tiger posts a detailed alert in the latest Culvert Reminder source channel and mentions the admin who issued that scan. If that alert fails, Tiger uses the private bot-log channel as an independent fallback. If no recent source context exists, Tiger falls back to the configured reminder channel and Tiger Admin role when available.
 
@@ -128,7 +128,7 @@ The normal reminder now posts automatically after a successful Culvert Reminder 
 2. The command acknowledgement is private.
 3. Tiger posts the public reminder in the channel configured by `CULVERT_REMINDER_CHANNEL_ID`.
 4. The reminder mentions the role configured by `CULVERT_PENDING_ROLE_ID`.
-5. The dynamic deadline points to Thursday **9:50 AM Brisbane time**.
+5. The dynamic deadline points to Wednesday **23:50 UTC**.
 
 The Discord role can be renamed without changing the role ID or Cloudflare variable.
 

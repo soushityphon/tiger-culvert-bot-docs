@@ -252,7 +252,7 @@ Lists Tiger vacations in separate **On Vacation** and **Upcoming Vacations** sec
 
 Posts the standard Culvert deadline reminder in the configured reminder channel and mentions the configured Culvert role.
 
-The dynamic Discord timestamp targets Thursday **9:50 AM Brisbane time**, 10 minutes before weekly reset.
+The dynamic Discord timestamp targets Wednesday **23:50 UTC**, 10 minutes before weekly reset.
 
 **Permission:** Admin.
 
@@ -362,7 +362,7 @@ The public interaction message is edited as OCR, Discord checks and role writes 
 
 ### Weekly role reset
 
-At Thursday **10:05 AM Brisbane time**, Tiger automatically removes the Culvert Reminder role from all current holders and verifies the final guild role state. It records started, queued, succeeded or failed state with a run ID, times and safe counts, and shows the latest result in `/health`. A **10:15 AM Brisbane** safety cron retries when the primary run is absent or failed, but does not duplicate a cleanup that is still in progress. An hourly Thursday recovery trigger at `35 * * * 4` checks later in the day and runs the same cleanup only when no attempt at all was recorded for the current Brisbane reset date.
+At Thursday **00:05 UTC**, Tiger automatically removes the Culvert Reminder role from all current holders and verifies the final guild role state. It records started, queued, succeeded or failed state with a run ID, times and safe counts, and shows the latest result in `/health`. A **00:15 UTC** safety cron retries when the primary run is absent or failed, but does not duplicate a cleanup that is still in progress. An hourly Thursday recovery trigger at `35 0-13 * * THU` checks from 00:35 to 13:35 UTC and runs the same cleanup only when no attempt at all was recorded for the current UTC reset date.
 
 If the cleanup cannot start, fails, or still has role holders after the watchdog window, Tiger posts a detailed alert in the latest Culvert Reminder source channel and mentions that issuing admin. If the normal alert fails, Tiger sends an independent fallback alert to the private bot-log channel. If no prior source context is available, the configured reminder channel/Tiger Admin role is used.
 
