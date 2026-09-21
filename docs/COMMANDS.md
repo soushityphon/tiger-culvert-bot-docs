@@ -156,7 +156,9 @@ Removes both Discord Username and Discord User ID from the selected Tiger player
 
 ---
 
-### `/linkaudit`
+### `/linkaudit [page]`
+
+Lists show up to eight entries per page, with a shown/total count. Use `/linkaudit page:2` for the next page; the footer shows how many pages are available. Each invocation reads current data, so counts can change if the roster is updated between requests. Access remains admin-only and the response remains private.
 
 Runs a private read-only audit of Tiger roster-to-Discord links. It reports Active players missing a Discord User ID, Active linked players not found in the Tiger Discord, duplicate Discord User IDs, and inactive players that still retain a Discord link.
 
