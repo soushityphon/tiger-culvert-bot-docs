@@ -24,13 +24,13 @@ When an admin command is used outside the Tiger server, the Worker checks the ca
 
 Substantial Tiger operations use a short `Reference` such as `IMP-*`, `CUL-*`, `CRR-*`, or another workflow-specific ID. The same reference is used in Tiger's private lifecycle log so Soushi can trace the exact run without asking an admin to inspect infrastructure.
 
-When Tiger reports a failure, read the **State** and **Next** guidance before doing anything else:
+When Tiger reports a failure, read the outcome and follow the next action before doing anything else. Normal replies keep internal state and retry labels in private logs:
 
 - If Tiger explicitly says the action is safe to retry, retry only the named action and only as instructed.
 - If Tiger says to wait, do not start a second copy of the workflow. Use the stated status/check command when one is provided.
-- If Tiger says not to retry or to send the details to Soushi, stop there and pass Soushi the full reference/diagnostic block.
+- If Tiger says not to retry or to send the details to Soushi, stop there and pass Soushi the reply and reference.
 - Do not try to repair GitHub, Cloudflare, Worker bindings, source code, or private logs. Those systems are handled by Soushi.
-- A diagnostic is supporting information, not an instruction to edit the tracker or Discord manually. Follow the explicit **Next** instruction instead.
+- Follow the explicit recovery instruction; do not infer that you should edit the tracker or Discord manually from an error description.
 
 If Discord itself shows only **The application did not respond** and Tiger provided no state-aware message, do not assume a write command is safe to repeat. For Culvert imports, use `/culvertimport status` first. For other write/role workflows, pass the command name, approximate time, and any visible Tiger reference to Soushi before repeating the action unless the workflow has a documented read-only state check.
 
@@ -447,4 +447,4 @@ Unlisted OCR names do not block Culvert Reminder Apply. Names that do not resolv
 
 ## Culvert import failure recovery
 
-Current import failures include a short `IMP-...` reference, the saved session state and one retry class: `SAFE_TO_RETRY`, `WAIT_AND_RETRY`, `DO_NOT_RETRY`, or `NEEDS_SOUSHI`. Follow the action shown in Discord. Do not ask admins to inspect GitHub, Cloudflare or Apps Script, only Soushi has that access.
+Current import failures include a short `IMP-...` reference, a concise outcome and the safe next action. Saved session state, retry classifications and diagnostics remain in private logs. Follow the action shown in Discord. Do not ask admins to inspect GitHub, Cloudflare or Apps Script; only Soushi has that access.

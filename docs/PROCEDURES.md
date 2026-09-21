@@ -4,12 +4,12 @@
 
 Tiger's reliability messages are designed so an admin can decide what to do without access to GitHub, Cloudflare, source code, or private logs.
 
-1. Read the **State** line first. It tells you whether Tiger knows that nothing changed, something completed, work may still be running, or completion is uncertain.
-2. Follow the **Next** instruction exactly. Retry only when Tiger says the named action is safe to retry.
+1. Read Tiger's outcome first. It explains whether nothing changed, something completed, work may still be running, or completion is uncertain.
+2. Follow the next action exactly. Retry only when Tiger says the named action is safe to retry.
 3. If Tiger says **wait**, do not start a second run. Use the status/check command named in the message when available.
-4. If Tiger says **do not retry** or **send this to Soushi**, copy the full diagnostic block, especially the `Reference`, workflow/stage, state and diagnostic code, and send it to Soushi.
+4. If Tiger says **do not retry** or **send this to Soushi**, send Soushi the reply and its reference. You do not need to find internal workflow stages, states or diagnostic codes.
 5. Do not ask another admin to change Cloudflare, GitHub, Worker settings, source code, or private logs. Only Soushi handles those systems.
-6. Do not make a manual Sheet/role change merely because a diagnostic mentions that subsystem. The diagnostic identifies the failure for Soushi; the **Next** line is the operator instruction.
+6. Do not make a manual Sheet/role change merely because an error mentions that subsystem. Follow Tiger's explicit recovery instruction; internal state and diagnostic fields stay in private logs for Soushi.
 
 ### If Discord only says `The application did not respond`
 
