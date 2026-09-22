@@ -168,7 +168,9 @@ Runs a private read-only audit of Tiger roster-to-Discord links. It reports Acti
 
 ---
 
-### `/nexonaudit`
+### `/nexonaudit [page]`
+
+The completed summary covers the full roster. Review items show eight per page with shown/total and page counts. After the audit finishes, use `/nexonaudit page:2` for another page. **Each request runs a fresh full audit**, so allow the normal processing time and expect counts to change if source data changes. Do not start another page while the previous audit is still running. Out-of-range pages show the last page; all review entries remain reachable.
 
 Runs a private, read-only audit of every Active Tiger player against Nexon GMS character ranking data. Tiger looks up the exact Current IGN, compares the returned character name and Job, checks whether the Nexon Level is plausible against the newest Weekly Data level, and verifies that Nexon returned a trusted character PNG URL.
 
