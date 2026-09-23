@@ -254,20 +254,21 @@ Lists Tiger vacations in separate **On Vacation** and **Upcoming Vacations** sec
 
 ### `/culvertreminder`
 
-Creates or finds the persistent **Send reminder** control in the configured channel. The command does not send a role reminder.
+Creates or finds the persistent **Send reminder** control in `#admin-culvert-reminder`. The command does not send a role reminder.
 
 The dynamic Discord timestamp targets Wednesday **23:50 UTC**, 10 minutes before weekly reset.
 
 **Permission:** Admin.
 
-**Visibility:** The command reply is private. The button posts a public reminder to the configured channel and mentions the role.
+**Visibility:** The command reply is private. The button posts a public role ping to the member reminder channel and mentions the role.
 
 **Configuration:**
 
-- `CULVERT_REMINDER_CHANNEL_ID`
+- `CULVERT_REMINDER_CONTROL_CHANNEL_ID` for the admin button
+- `CULVERT_REMINDER_CHANNEL_ID` for the member role ping
 - `CULVERT_PENDING_ROLE_ID`
 
-The environment variable retains the historical `PENDING` name, but the Discord role itself can be renamed freely because the bot uses the role ID. The same reminder is also posted automatically after a successful Culvert Reminder Apply.
+The environment variable retains the historical `PENDING` name, but the Discord role itself can be renamed freely because the bot uses the role ID. Apply creates or finds the admin control and never sends a role ping.
 
 ---
 
@@ -354,7 +355,7 @@ Processes the zero-score screenshots supplied by the Tiger Admin and treats thos
 
 Only the admin who created the preview can use Apply/Cancel. Apply re-verifies admin access, current roster/link fingerprint and affected Discord role state. Adds happen before removals. If any required add fails, removals are skipped.
 
-After post-write verification confirms the affected members, Tiger marks Apply successful and prepares the persistent **Send reminder** control in the configured channel. Apply does not ping the role. A channel member can use the button without a second admin-role lookup or confirmation. The button checks the current week and fresh role membership, and the shared message displays the last confirmed sender and time. Uncertain delivery pauses the button for review.
+After post-write verification confirms the affected members, Tiger marks Apply successful and prepares the persistent **Send reminder** control in `#admin-culvert-reminder`. Apply does not ping the role. A channel member can use the button without a second admin-role lookup or confirmation. The button checks the current week and fresh role membership, and the shared message displays the last confirmed sender and time. Uncertain delivery pauses the button for review.
 
 **Progress and failures:**
 
