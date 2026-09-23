@@ -108,7 +108,7 @@ Historical matching uses current players, former/inactive players, genuine playe
 7. The admin who created the preview selects **Apply Culvert Role**.
 8. Tiger re-verifies admin access, roster/link fingerprint and affected Discord role state. Adds happen first. Removals only begin if every required add succeeds.
 9. Watch the edited status message during role writes. If the workflow fails or appears stalled, Tiger pings the issuing admin in the same source channel and includes a detailed diagnostic.
-10. After post-write verification confirms the affected members, Tiger marks the Apply successful and automatically posts the normal Culvert deadline reminder. There is no second confirmation.
+10. After post-write verification confirms the affected members, Tiger marks Apply successful and prepares the persistent **Send reminder** control in the configured channel. Apply sends no role ping.
 
 Vacation-exempt zero players are excluded from the desired reminder-role set during their excused Tiger weeks.
 
@@ -120,14 +120,12 @@ If the scheduled cleanup cannot start, fails, or appears stalled, Tiger posts a 
 
 ---
 
-## 4. Manual Culvert reminder
+## 4. Send Culvert reminder
 
-The normal reminder now posts automatically after a successful Culvert Reminder Apply. `/culvertreminder` remains available as a manual/recovery option.
-
-1. Run `/culvertreminder`.
-2. The command acknowledgement is private.
-3. Tiger posts the public reminder in the channel configured by `CULVERT_REMINDER_CHANNEL_ID`.
-4. The reminder mentions the role configured by `CULVERT_PENDING_ROLE_ID`.
+1. Go to the configured reminder channel and use the current week’s **Send reminder** button. `/culvertreminder` creates or finds the control if it is missing.
+2. Tiger checks the current reminder-role membership, then posts one public reminder mentioning `CULVERT_PENDING_ROLE_ID`.
+3. The shared control shows the last confirmed sender and time. A second click during delivery cannot send another reminder.
+4. If delivery is uncertain, the button pauses. Check the channel and ask Soushi to reconcile the operation before trying again. An old-week or wrong-channel button cannot send.
 5. The dynamic deadline points to Wednesday **23:50 UTC**.
 
 The Discord role can be renamed without changing the role ID or Cloudflare variable.

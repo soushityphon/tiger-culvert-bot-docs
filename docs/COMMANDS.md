@@ -254,13 +254,13 @@ Lists Tiger vacations in separate **On Vacation** and **Upcoming Vacations** sec
 
 ### `/culvertreminder`
 
-Posts the standard Culvert deadline reminder in the configured reminder channel and mentions the configured Culvert role.
+Creates or finds the persistent **Send reminder** control in the configured channel. The command does not send a role reminder.
 
 The dynamic Discord timestamp targets Wednesday **23:50 UTC**, 10 minutes before weekly reset.
 
 **Permission:** Admin.
 
-**Visibility:** The command acknowledgement is private. The actual reminder message in the configured reminder channel is public and mentions the role.
+**Visibility:** The command reply is private. The button posts a public reminder to the configured channel and mentions the role.
 
 **Configuration:**
 
@@ -354,7 +354,7 @@ Processes the zero-score screenshots supplied by the Tiger Admin and treats thos
 
 Only the admin who created the preview can use Apply/Cancel. Apply re-verifies admin access, current roster/link fingerprint and affected Discord role state. Adds happen before removals. If any required add fails, removals are skipped.
 
-After post-write verification confirms the affected members, Tiger marks the Apply successful and automatically posts the same reminder used by `/culvertreminder`. No second confirmation is required. If the reminder post itself fails, the role changes remain in place and Tiger pings the issuing admin with the failure reason.
+After post-write verification confirms the affected members, Tiger marks Apply successful and prepares the persistent **Send reminder** control in the configured channel. Apply does not ping the role. A channel member can use the button without a second admin-role lookup or confirmation. The button checks the current week and fresh role membership, and the shared message displays the last confirmed sender and time. Uncertain delivery pauses the button for review.
 
 **Progress and failures:**
 
