@@ -38,6 +38,16 @@ If Discord itself shows only **The application did not respond** and Tiger provi
 
 ## Slash commands
 
+### `/8duck question`
+
+Ask Frank a short yes-or-no question (1 to 180 characters). Frank repeats the question in a public reply and gives one playful duck verdict. His answers favour giving it a go, with occasional uncertainty or a suggestion to wait. The question cannot ping other people or alter Discord formatting. It is a guild joke, not a claim about MapleStory odds.
+
+**Permission:** Tiger member, Tiger Admin or configured owner in the Tiger server.
+
+**Visibility:** Public in the invoking channel. Invalid questions and access errors are private.
+
+---
+
 ### `/me [public]`
 
 Shows the caller's Tiger member profile. If the linked Players row is not Active, Tiger returns a private inactive-profile message and does not show profile data. If the Discord account is not linked, Tiger tells the member to ask a Tiger Admin to use `/link`.
