@@ -48,6 +48,18 @@ Ask Frank a short yes-or-no question (1 to 180 characters). Frank repeats the qu
 
 ---
 
+### `/luckychannel`
+
+Frank picks one shared Kronos channel from 1 to 40 for each UTC day. The public result resets at 00:00 UTC. **Worked** and **Didn't work** record your report for that day. Tap the other choice to change it, or tap your current choice again to withdraw it. Feedback replies are private. Yesterday's buttons cannot affect today.
+
+Later public replies may include a varied Frank line about today's reports. A single named report uses a freshly checked Tiger member's safe plain text Discord username, never a ping. Frank uses a count if that check fails. These are self-reported stories, not proof that a channel changes drop rates. Picks and votes live in a dedicated Durable Object, separate from the Culvert tracker.
+
+**Permission:** Tiger member, Tiger Admin, Discord Admin or configured owner in the Tiger server.
+
+**Visibility:** The channel is public in the invoking channel. Feedback and access errors are private.
+
+---
+
 ### `/me [public]`
 
 Shows the caller's Tiger member profile. If the linked Players row is not Active, Tiger returns a private inactive-profile message and does not show profile data. If the Discord account is not linked, Tiger tells the member to ask a Tiger Admin to use `/link`.
