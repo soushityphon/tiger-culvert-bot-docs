@@ -355,7 +355,7 @@ Processes the zero-score screenshots supplied by the Tiger Admin and treats thos
 
 Only the admin who created the preview can use Apply/Cancel. Apply re-verifies admin access, current roster/link fingerprint and affected Discord role state. Adds happen before removals. If any required add fails, removals are skipped.
 
-After post-write verification confirms the affected members, Tiger marks Apply successful and prepares the persistent **Send reminder** control in `#admin-culvert-reminder`. Apply does not ping the role. A channel member can use the button without a second admin-role lookup or confirmation. The button checks the current week and fresh role membership, and the shared message displays the last confirmed sender and time. Uncertain delivery pauses the button for review.
+After post-write verification confirms the affected members, Tiger marks Apply successful and prepares the persistent **Send reminder** control in `#admin-culvert-reminder`. Apply does not ping the role. Only a Tiger Admin or Discord Admin can use the button. It posts to the configured member channel without checking the control's week or the number of role holders. The shared message displays the most recent confirmed sender and time. Each click is independent; an uncertain post is not retried.
 
 **Progress and failures:**
 
