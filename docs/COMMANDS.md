@@ -40,7 +40,7 @@ If Discord itself shows only **The application did not respond** and Tiger provi
 
 ### `/8duck question`
 
-Ask Frank a short yes-or-no question (1 to 180 characters). Frank repeats the question in a public reply and gives one playful duck verdict. His 80 varied answers give a yes half the time, uncertainty 30% of the time and a no or wait 20% of the time. Frank leaves Unicode and Discord custom emojis out of the quoted question. If nothing is left, he asks for a question with words. The question cannot ping other people or alter Discord formatting. It is a guild joke, not a claim about MapleStory odds.
+Ask Frank a short yes-or-no question (1 to 180 characters). Frank repeats the question in a public reply and gives one playful duck verdict. His 80 varied answers give a yes 45% of the time, uncertainty 20% of the time and a no or wait 35% of the time. Frank does not ask for a follow-up report. Frank leaves Unicode and Discord custom emojis out of the quoted question. If nothing is left, he asks for a question with words. The question cannot ping other people or alter Discord formatting. It is a guild joke, not a claim about MapleStory odds.
 
 **Permission:** Tiger member, Tiger Admin or configured owner in the Tiger server.
 
