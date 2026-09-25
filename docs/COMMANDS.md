@@ -52,6 +52,20 @@ If a character is not available through the Nexon rankings lookup, Nexon is unav
 
 ---
 
+### `/iranculvert screenshot`
+
+Lets a current Culvert Reminder-role holder submit one **Member Participation Status** screenshot set to **This Week**. The required `screenshot` option uses Discord's normal image attachment picker.
+
+Frank checks the caller's live Tiger membership, single linked Active player and exact IGN. A focused one-image OCR pass reads only the This Week heading, that exact visible IGN row and its Culvert score. The score is checked against every earlier official score and the exact immediately preceding Tiger week. A repeated exact score is treated as suspicious, not proof of fraud. A positive score below 95% of a positive prior-week score must be rerun.
+
+Unreadable, wrong-view, missing-IGN or ambiguous proof returns a private resubmission request with an example. Every readable result is public. Passing proof says the role will come off shortly, then a durable job waits about 30 seconds, rechecks the Tiger week and role, removes the role once and edits the same result with the verified outcome. The command never writes Weekly Data.
+
+**Permission:** Current Culvert Reminder-role holder in Tiger with one linked Active player.
+
+**Visibility:** Reading and identity errors are private. Readable zero, repeated score, below-95% score, pass and service failure are public.
+
+---
+
 ### `/whois member [public]`
 
 Shows another linked member's Tiger profile. It uses the same optional validated Nexon character thumbnail and failure-safe fallback as `/me`.
