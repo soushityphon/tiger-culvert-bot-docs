@@ -38,6 +38,16 @@ If Discord itself shows only **The application did not respond** and Tiger provi
 
 ## Slash commands
 
+### `/commands [public]` and `/help [public]`
+
+Both names open the same role-aware command guide. Everyone can use them. The guide shows onboarding to everyone, member commands to Tiger members, and all member and admin commands to a current Tiger Admin, Discord Admin or configured owner. `/iranculvert` is listed for Tiger members with a note that it only works while they hold the Culvert Reminder role. Outside the Tiger server, Frank checks current Tiger roles before including admin commands.
+
+**Permission:** Everyone. The commands listed in the reply still enforce their own permissions and data requirements.
+
+**Visibility:** Private by default. Set `public:true` to show your filtered guide to the channel.
+
+---
+
 ### `/8duck question`
 
 Ask Frank a short yes-or-no question (1 to 180 characters). Frank repeats the question in a public reply and gives one playful duck verdict. His 80 varied answers give a yes 45% of the time, uncertainty 20% of the time and a no or wait 35% of the time. Frank does not ask for a follow-up report. Frank leaves Unicode and Discord custom emojis out of the quoted question. If nothing is left, he asks for a question with words. The question cannot ping other people or alter Discord formatting. It is a guild joke, not a claim about MapleStory odds.
