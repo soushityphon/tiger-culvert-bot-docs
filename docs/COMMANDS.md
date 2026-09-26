@@ -40,7 +40,7 @@ If Discord itself shows only **The application did not respond** and Tiger provi
 
 ### `/commands [public]` and `/help [public]`
 
-Both names open the same role-aware command guide. Everyone can use them. The guide shows onboarding to everyone, member commands to Tiger members, and all member and admin commands to a current Tiger Admin, Discord Admin or configured owner. `/iranculvert` is listed for Tiger members with a note that it only works while they hold the Culvert Reminder role. Outside the Tiger server, Frank checks current Tiger roles before including admin commands.
+Both names open the same role-aware command guide. Everyone can use them. General commands appear first, Frank's playful commands follow under **Frank for fun**, and the one-time `/iam` onboarding command appears at the bottom. The guide shows member commands to Tiger members and all member and admin commands to a current Tiger Admin, Discord Admin or configured owner. `/iranculvert` is listed for Tiger members with a note that it only works while they hold the Culvert Reminder role. The full admin documentation link appears only in an admin guide. Outside the Tiger server, Frank checks current Tiger roles before including admin commands.
 
 **Permission:** Everyone. The commands listed in the reply still enforce their own permissions and data requirements.
 
