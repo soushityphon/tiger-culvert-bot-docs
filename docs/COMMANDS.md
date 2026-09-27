@@ -134,6 +134,20 @@ Ambiguous numeric dates are rejected rather than guessed.
 
 ---
 
+### `/sandbagger`
+
+Posts one playful Frank callout for the newest confirmed Tiger week. The command uses the established Performance Watch PB Gap and Sustained Low rules, including their score-history minimums and guild-wide damage adjustment. It never chooses a member just because they are in the raw bottom ten.
+
+Eligible members must have a positive official score, a previous positive personal best, one valid Discord link, no approved vacation for that week, and current Active status. Frank also checks that the linked account is still in Tiger with an allowed Tiger member/admin role. He ranks eligible members by the latest score as a percentage of the previous personal best, takes the worst ten, then chooses one at random. If fewer than ten qualify, he uses the smaller pool. If no one qualifies, he posts a playful public result that Tiger beat the allegations instead of lowering the threshold.
+
+Each public callout shows the selected member, current score, previous personal best, rounded percentage and Tiger week. Only that member can be pinged. The selected week has a separate durable state, so another invocation does not reroll or duplicate a confirmed post. If Discord delivery is uncertain, Frank blocks blind reposting and tells the admin to check the channel. Automatic weekly callouts are planned follow-up work and are not enabled.
+
+**Permission:** Tiger Admin, Discord Admin or configured owner, in the Tiger server only.
+
+**Visibility:** The callout or no-eligible result is public in the invoking channel. Progress, duplicate, access and recovery replies are private.
+
+---
+
 ### `/summary [week]`
 
 Shows the guild weekly Culvert summary for the selected week or the newest available week.
