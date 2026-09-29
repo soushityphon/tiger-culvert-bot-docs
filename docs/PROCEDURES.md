@@ -234,7 +234,7 @@ The normal weekly public post is:
 
 `/weekly`
 
-Post it in `#tiger-culvert` when the week is ready.
+Run it in any Tiger server channel when the week is ready. The report posts in `#tiger-culvert`, and the invoking admin gets a private link. Check that channel before repeating a command whose delivery result is uncertain.
 
 `/leaderboard`, `/summary`, and `/milestones` remain available as optional admin-triggered public views for regular chat when needed.
 

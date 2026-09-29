@@ -115,7 +115,7 @@ Shows another linked member's Tiger profile. It uses the same optional validated
 
 ### `/weekly [week]`
 
-Posts the combined Tiger weekly Culvert update. This is the normal weekly public post for `#tiger-culvert`.
+Run this in any Tiger server channel to post one combined Tiger weekly Culvert update in `#tiger-culvert`. Frank gives the invoking admin a private confirmation with the week and message link. The source channel gets no public report.
 
 The optional `week` field supports autocomplete and fuzzy Tiger week lookup.
 
@@ -130,7 +130,7 @@ Ambiguous numeric dates are rejected rather than guessed.
 
 **Permission:** Admin.
 
-**Visibility:** Public.
+**Visibility:** Public in `#tiger-culvert`, with a private command result.
 
 ---
 
