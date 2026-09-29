@@ -118,6 +118,7 @@ Shows another linked member's Tiger profile. It uses the same optional validated
 Run this in any Tiger server channel to post one combined Tiger weekly Culvert update in `#tiger-culvert`. Frank gives the invoking admin a private confirmation with the week and message link. The source channel gets no public report.
 
 The optional `week` field supports autocomplete and fuzzy Tiger week lookup.
+Autocomplete shows the date on the Weekly report. For example, **24 Sep 2026** selects the report headed **24 Sep 2026**.
 
 Accepted examples include:
 
