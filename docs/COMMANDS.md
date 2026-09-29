@@ -98,6 +98,10 @@ Unreadable, wrong-view, missing-IGN or ambiguous proof returns a private resubmi
 
 ---
 
+### `/compare member`
+
+Tiger members can compare their latest confirmed Culvert week with another linked Active Tiger member in the invoking channel. The public card shows the exact confirmed Weekly Data date for both players, current scores and status, gap when both scored, prior confirmed-week change, recent trend, historical PB and a cautious pace projection. Missing, recorded zero and excused runs have distinct labels. The two buttons open player 1 or player 2's public profile for any current Tiger member who sees the card. The public profile excludes vacation details and internal Player ID. `/whois` retains its admin gate.
+
 ### `/whois member [public]`
 
 Shows another linked member's Tiger profile. It uses the same optional validated Nexon character thumbnail and failure-safe fallback as `/me`.
