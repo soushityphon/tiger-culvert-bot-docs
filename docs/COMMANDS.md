@@ -420,7 +420,7 @@ Processes the zero-score screenshots supplied by the Tiger Admin and treats thos
 
 Only the admin who created the preview can use Apply/Cancel. Apply re-verifies admin access, current roster/link fingerprint and affected Discord role state. Adds happen before removals. If any required add fails, removals are skipped.
 
-After post-write verification confirms the affected members, Tiger marks Apply successful and prepares the persistent **Send reminder** control in `#admin-culvert-reminder`. Apply does not ping the role. Only a Tiger Admin or Discord Admin can use the button. It posts to the configured member channel without checking the control's week or the number of role holders. The shared message displays the most recent confirmed sender and time. Each click is independent; an uncertain post is not retried.
+After post-write verification confirms the affected members, Tiger adds **Send reminder** directly under the current **Culvert Role Applied** message. Each confirmed scan has its own button; sender/time updates keep the role summary on that same message. `/culvertreminder` remains a standalone fallback. Only a Tiger Admin or Discord Admin can use the button. It posts to the configured member channel without checking the control's week or the number of role holders. The shared message displays the most recent confirmed sender and time. Each click is independent; an uncertain post is not retried.
 
 **Progress and failures:**
 
@@ -518,3 +518,4 @@ Unlisted OCR names do not block Culvert Reminder Apply. Names that do not resolv
 ## Culvert import failure recovery
 
 Current import failures include a short `IMP-...` reference, a concise outcome and the safe next action. Saved session state, retry classifications and diagnostics remain in private logs. Follow the action shown in Discord. Do not ask admins to inspect GitHub, Cloudflare or Apps Script; only Soushi has that access.
+

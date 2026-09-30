@@ -108,7 +108,7 @@ Historical matching uses current players, former/inactive players, genuine playe
 7. The admin who created the preview selects **Apply Culvert Role**.
 8. Tiger re-verifies admin access, roster/link fingerprint and affected Discord role state. Adds happen first. Removals only begin if every required add succeeds.
 9. Watch the edited status message during role writes. If the workflow fails or appears stalled, Tiger pings the issuing admin in the same source channel and includes a detailed diagnostic.
-10. After post-write verification confirms the affected members, Tiger marks Apply successful and prepares the persistent **Send reminder** control in `#admin-culvert-reminder`. Apply sends no role ping.
+10. After post-write verification confirms the affected members, Tiger shows **Culvert Role Applied** with **Send reminder** directly underneath. Each confirmed scan has its own button.
 
 Vacation-exempt zero players are excluded from the desired reminder-role set during their excused Tiger weeks.
 
@@ -122,9 +122,9 @@ If the scheduled cleanup cannot start, fails, or appears stalled, Tiger posts a 
 
 ## 4. Send Culvert reminder
 
-1. A Tiger Admin or Discord Admin uses **Send reminder** in `#admin-culvert-reminder`. `/culvertreminder` creates or finds the control if it is missing. The same control works across weeks.
+1. A Tiger Admin or Discord Admin uses **Send reminder** under the completed role summary. `/culvertreminder` creates or finds the standalone fallback in `#admin-culvert-reminder`. Controls remain usable across weeks.
 2. Tiger posts a public reminder mentioning `CULVERT_PENDING_ROLE_ID` in the member Culvert reminder channel. It does not count role holders or check the control's week. The deadline uses the next Wednesday 23:50 UTC cutoff at send time.
-3. The shared control shows the most recent confirmed sender and time. Two clicks can send two reminders.
+3. The clicked message shows the most recent confirmed sender and time while retaining the role summary. Two clicks can send two reminders.
 4. If delivery is uncertain, check the member channel. Tiger does not retry that click. A later click is a separate send. Wrong-channel controls cannot send.
 5. The dynamic deadline points to Wednesday **23:50 UTC**.
 
@@ -270,3 +270,4 @@ Do not use a public Worker URL to register commands. Command registration is int
 ## Bot observability checks
 
 Use `/health` for a private read-only check of Worker, Apps Script, Discord, audit-channel, queue and Gemini health. It also shows the latest persisted scheduled Culvert reset outcome and flags when the expected Thursday reset date has no recorded attempt after the grace window. Use `/linkaudit` for roster/Discord-link integrity. Tiger writes top-level Discord bot actions and scheduled reset start/success/failure outcomes to the private Tiger bot log channel for operational audit history.
+
