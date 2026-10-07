@@ -409,16 +409,16 @@ Processes the zero-score screenshots supplied by the Tiger Admin and treats thos
 - counts every supplied image
 - processes OCR in batches with six visible numbered workflow steps; each numbered stage uses `ETA for this step` so the estimate cannot be mistaken for the whole workflow
 - retries transient OCR failures without reprocessing successful screenshots
-- requires every supplied screenshot to process safely before Apply is available
+- requires every supplied screenshot to process safely before automatically updating roles
 - blocks Apply when a zero-score row needs review or a required Discord check is unresolved
 - respects vacation exemptions
 - checks the current Discord role state, preferring a bulk guild-member snapshot for speed and falling back to conservative targeted checks if needed
-- previews additions, already-correct members, vacation exemptions and removals
+- checks additions, already-correct members, vacation exemptions and removals
 - creates a 30-minute creator-bound Apply plan
 
 **Apply rules:**
 
-Only the admin who created the preview can use Apply/Cancel. Apply re-verifies admin access, current roster/link fingerprint and affected Discord role state. Adds happen before removals. If any required add fails, removals are skipped.
+A safe complete scan automatically starts Apply as the initiating admin, with no confirmation button. Apply re-verifies admin access, current roster/link fingerprint and affected Discord role state. Adds happen before removals. If any required add fails, removals are skipped. Verified completion retains **Send reminder** for a separate manual ping. Previously posted previews retain their creator-only Apply/Cancel buttons.
 
 After post-write verification confirms the affected members, Tiger adds **Send reminder** directly under the current **Culvert Role Applied** message. Each confirmed scan has its own button; sender/time updates keep the role summary on that same message. `/culvertreminder` remains a standalone fallback. Only a Tiger Admin or Discord Admin can use the button. It posts to the configured member channel without checking the control's week or the number of role holders. The shared message displays the most recent confirmed sender and time. Each click is independent; an uncertain post is not retried.
 
@@ -428,7 +428,7 @@ The public interaction message is edited as OCR, Discord checks and role writes 
 
 **Permission:** Admin.
 
-**Visibility:** Permission/initial validation failures are private. Successful progress, role preview, Apply/Cancel result, stall warnings and role-workflow failures are public in the source channel.
+**Visibility:** Permission/initial validation failures are private. Successful progress, role result, stall warnings and role-workflow failures are public in the source channel.
 
 ### Weekly role reset
 

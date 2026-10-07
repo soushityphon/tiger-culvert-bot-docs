@@ -102,10 +102,10 @@ Historical matching uses current players, former/inactive players, genuine playe
 1. Put the zero-score screenshots that the Tiger Admin wants to use in the selected Discord message. The supplied screenshots are treated as the complete list. If the admin omits a screenshot, manual correction remains the admin's responsibility.
 2. Right-click the message and choose **Apps > Culvert Reminder**.
 3. Watch the public status message. Tiger edits it as OCR batches, roster checks and Discord checks progress, including a rough ETA where there is enough timing data.
-4. Confirm that the screenshot counter reaches the full supplied count. Tiger will not offer Apply if a supplied screenshot failed, an OCR row needs review, or a required Discord check is unresolved.
-5. Review `Would add`, `Already has role`, `Vacation exempt`, and `Would remove`.
-6. If a safety lock appears, use the diagnostic to fix the source issue and run a fresh Culvert Reminder scan.
-7. The admin who created the preview selects **Apply Culvert Role**.
+4. Confirm that the screenshot counter reaches the full supplied count. Tiger will not update roles if a supplied screenshot failed, an OCR row needs review, or a required Discord check is unresolved.
+5. Screenshot matching and Discord checks determine additions, already-correct roles, vacation exemptions and removals.
+6. If a screenshot or safety check fails, resolve the reported issue before starting a fresh scan.
+7. Once every supplied screenshot and safety check passes, frank automatically starts the role update. No Apply confirmation is needed.
 8. Tiger re-verifies admin access, roster/link fingerprint and affected Discord role state. Adds happen first. Removals only begin if every required add succeeds.
 9. Watch the edited status message during role writes. If the workflow fails or appears stalled, Tiger pings the issuing admin in the same source channel and includes a detailed diagnostic.
 10. After post-write verification confirms the affected members, Tiger shows **Culvert Role Applied** with **Send reminder** directly underneath. Each confirmed scan has its own button.
