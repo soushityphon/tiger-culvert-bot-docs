@@ -139,9 +139,11 @@ Ambiguous numeric dates are rejected rather than guessed.
 
 ---
 
-### `/sandbagger`
+### `/sandbagger [member]`
 
-Posts a playful Frank callout for the newest confirmed Tiger week. The first invocation locks the selected member for that week. Each later deliberate invocation reposts that same member with newly selected prewritten Frank dialogue. The command uses the established Performance Watch PB Gap and Sustained Low rules, including their score-history minimums and guild-wide damage adjustment. It never chooses a member just because they are in the raw bottom ten.
+`/sandbagger member:@User` uses the selected server member with the same public format and fresh Frank copy. Random eligibility does not apply to this choice. The member needs a unique tracker link and a confirmed score for the week. Manual picks do not change the saved weekly random pick.
+
+With no member argument, posts a playful Frank callout for the newest confirmed Tiger week. The first random invocation locks the selected member for that week. Each later deliberate invocation reposts that same member with newly selected prewritten Frank dialogue. The command uses the established Performance Watch PB Gap and Sustained Low rules, including their score-history minimums and guild-wide damage adjustment. It never chooses a member just because they are in the raw bottom ten.
 
 Eligible members must have a positive official score, a previous positive personal best, one valid Discord link, no approved vacation for that week, and current Active status. Frank also checks that the linked account is still in Tiger with an allowed Tiger member/admin role. He ranks eligible members by the latest score as a percentage of the previous personal best, takes the worst ten, then chooses one at random. If fewer than ten qualify, he uses the smaller pool. If no one qualifies, he posts a playful public result that Tiger beat the allegations instead of lowering the threshold.
 
@@ -518,4 +520,3 @@ Unlisted OCR names do not block Culvert Reminder Apply. Names that do not resolv
 ## Culvert import failure recovery
 
 Current import failures include a short `IMP-...` reference, a concise outcome and the safe next action. Saved session state, retry classifications and diagnostics remain in private logs. Follow the action shown in Discord. Do not ask admins to inspect GitHub, Cloudflare or Apps Script; only Soushi has that access.
-
