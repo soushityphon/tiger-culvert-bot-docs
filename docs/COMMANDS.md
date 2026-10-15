@@ -141,7 +141,7 @@ Ambiguous numeric dates are rejected rather than guessed.
 
 ### `/sandbagger [member]`
 
-`/sandbagger member:@User` uses the selected server member with the same public format and fresh Frank copy. Random eligibility does not apply to this choice. The member needs a unique tracker link and a confirmed score for the week. Manual picks do not change the saved weekly random pick.
+`/sandbagger member:@User` uses the selected server member with the same public format and fresh Frank copy. Random eligibility does not apply to this choice. The member needs a unique tracker link and a confirmed score for the week. Manual picks do not change the saved weekly random pick. Frank keeps the roast for a Performance Watch flag, dismisses unsupported allegations, and recognises matched or new personal bests. Zero scores and missing earlier PBs have their own lines.
 
 With no member argument, posts a playful Frank callout for the newest confirmed Tiger week. The first random invocation locks the selected member for that week. Each later deliberate invocation reposts that same member with newly selected prewritten Frank dialogue. The command uses the established Performance Watch PB Gap and Sustained Low rules, including their score-history minimums and guild-wide damage adjustment. It never chooses a member just because they are in the raw bottom ten.
 
