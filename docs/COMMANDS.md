@@ -96,6 +96,8 @@ Unreadable, wrong-view, missing-IGN or ambiguous proof returns a private resubmi
 
 **Visibility:** Reading and identity errors are private. Readable zero, repeated score, below-85% score, pass and service failure are public.
 
+Frank has 72 result phrases across seven categories. Each category rotates through a shuffled pool across the server before repeating. This changes dialogue only; the score checks and verified role-removal process stay the same.
+
 ---
 
 ### `/compare member`
