@@ -38,6 +38,26 @@ If Discord itself shows only **The application did not respond** and Tiger provi
 
 ## Slash commands
 
+### `/announce create|edit|delete`
+
+Owner-only announcement builder for new commands and guild events. Use it inside the Tiger server. Other admins cannot author or change announcements. The command is disabled for ordinary members in Discord command permissions; if the configured owner has no Discord Administrator access, grant that account access to this command in Server Settings > Integrations > Frank.
+
+- `/announce create [channel] [format] [image] [ping_role] [ping_member]` opens a multiline text form. The target defaults to the invoking channel and the format defaults to Embed. Choose Normal message for plain chat text. Optional images use Discord’s attachment picker.
+- The private preview shows the authored content, target channel, visible selected mentions and Send/Cancel controls. Nothing posts until Send. Preview mentions never notify anyone.
+- Edit text preserves line breaks and Markdown. Embed controls add sections, edit/remove any section using the section picker, set a six-digit colour and footer, and change the image or thumbnail. Clear both section fields to remove it. Images accepts an upload or an HTTPS image URL. Blank image/thumbnail URL removes it; a fresh upload replaces the image.
+- `/announce edit message:<link>` loads a recorded announcement into a private preview. Review changes and press Save changes. Existing mentions stay visible but edits do not ping members or roles again.
+- `/announce delete message:<link>` shows the recorded post privately with Delete announcement/Cancel. It cannot delete weekly reports or other Frank messages made outside this builder.
+
+Drafts expire after 30 minutes. Limits: normal message text including selected pings 2,000 characters; embed title 256; description form 4,000; up to 25 sections with a 256-character title and 1,024-character value; footer 2,048; combined embed text 6,000. PNG/JPG/GIF/WebP uploads up to 8 MiB. Over-limit edits return a private explanation and preserve the last valid preview. URL images use an image embed in normal format; uploaded images become real attachments. The preview displays uploads using their Discord image URL, and the public post stores its own attachment copy.
+
+Posts use Frank’s name/avatar and your exact wording, with no extra commentary. Only explicitly selected member/role pings may notify anyone; @everyone, @here and unselected mentions in pasted text never notify. Announcement channels receive a normal message, without automatic cross-publishing. Frank needs View Channel, Send Messages, Embed Links for embeds and Attach Files for uploads; edit/delete also need Read Message History to check the current post.
+
+Sending/updating/deleting runs from durable state and ends with a private result and message link where applicable. Repeated clicks cannot duplicate the action. If delivery is unconfirmed, check the target channel before starting another draft. Frank does not automatically retry an uncertain public write. Existing posts locked by an unconfirmed edit/delete require Soushi to review the recorded state before further changes.
+
+**Permission:** Configured owner only, Tiger server only. **Visibility:** Editor and results private; only the reviewed announcement posts publicly.
+
+---
+
 ### `/commands [public]` and `/help [public]`
 
 Both names open the same role-aware command guide. Everyone can use them. General commands appear first, Frank's playful commands follow under **Frank for fun**, and the one-time `/iam` onboarding command appears at the bottom. The guide shows member commands to Tiger members and all member and admin commands to a current Tiger Admin, Discord Admin or configured owner. `/iranculvert` is listed for Tiger members with a note that it only works while they hold the Culvert Reminder role. The full admin documentation link appears only in an admin guide. Outside the Tiger server, Frank checks current Tiger roles before including admin commands.
