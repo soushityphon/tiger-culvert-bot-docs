@@ -40,7 +40,7 @@ If Discord itself shows only **The application did not respond** and Tiger provi
 
 ### `/announce create|edit|delete`
 
-Owner-only announcement builder for new commands and guild events. Use it inside the Tiger server. Other admins cannot author or change announcements. The command is disabled for ordinary members in Discord command permissions; if the configured owner has no Discord Administrator access, grant that account access to this command in Server Settings > Integrations > Frank.
+Announcement builder for new commands and guild events, available to the configured Tiger Admin role, Discord Admin role and owner inside the Tiger server. Each private draft can be used only by the admin who created it. Admins can start their own edit/delete preview for any recorded announcement. Frank rechecks the initiating admin’s current guild membership/roles before background processing and immediately before a public change; revoked or unverifiable access stops the action. The configured owner retains the standard bypass.
 
 - `/announce create` opens a private empty builder, with no slash options. **Channel & format** chooses the destination and Normal message or Embed; it defaults to the invoking channel and Embed. **Edit text** opens a multiline form. **Images** adds an upload/image URL or embed thumbnail, and **Pings** selects recipients. Set these in any order. Send stays disabled until there is valid announcement content.
 - Switching formats retains a separate text draft for each. On the first switch, normal text becomes the embed description, or the embed text/sections become a normal message. If the converted text exceeds the normal message limit, the change is rejected and the previous draft stays intact.
@@ -56,7 +56,7 @@ Posts use Frank’s name/avatar and your exact wording, with no extra commentary
 
 Sending/updating/deleting runs from durable state and ends with a private result and message link where applicable. Repeated clicks cannot duplicate the action. If delivery is unconfirmed, check the target channel before starting another draft. Frank does not automatically retry an uncertain public write. Existing posts locked by an unconfirmed edit/delete require Soushi to review the recorded state before further changes.
 
-**Permission:** Configured owner only, Tiger server only. **Visibility:** Editor and results private; only the reviewed announcement posts publicly.
+**Permission:** Tiger Admin, Discord Admin or configured owner, Tiger server only. **Visibility:** Editor and results private; only the reviewed announcement posts publicly.
 
 ---
 
