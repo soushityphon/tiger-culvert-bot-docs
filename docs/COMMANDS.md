@@ -82,13 +82,13 @@ Ask Frank a short yes-or-no question (1 to 180 characters). Frank repeats the qu
 
 ### `/luckychannel`
 
-Frank picks one shared Kronos channel from 1 to 40 for each UTC day. The public result resets at 00:00 UTC. **Worked** and **Didn't work** record your report for that day. Tap the other choice to change it, or tap your current choice again to withdraw it. Feedback replies are private. Yesterday's buttons cannot affect today.
+Frank picks one shared Kronos channel from 1 to 40 for each UTC day. The public result resets at 00:00 UTC. **Worked** and **Didn't work** record your report for that day. Tap the other choice to change it, or tap your current choice again to withdraw it. Each successful click edits the message containing that button, showing the shared daily reports with Frank's existing varied dialogue. Other messages stay unchanged until someone clicks one of their buttons. A new command invocation shows the shared totals. Yesterday's buttons cannot affect today.
 
-Later public replies may include a varied Frank line about today's reports. A single named report uses a freshly checked Tiger member's Discord mention with notifications suppressed. Frank uses a count if that check fails. These are self-reported stories, not proof that a channel changes drop rates. Picks and votes live in a dedicated Durable Object, separate from the Culvert tracker.
+Public results may include a varied Frank line about today's reports. A single named report uses a freshly checked server member's Discord mention with notifications suppressed. Button edits can name the clicker from the signed interaction; if the sole remaining report belongs to someone else, Frank uses a count instead of a remote lookup. Command invocations retain the fresh membership check and vote recheck before naming anyone. These are self-reported stories, not proof that a channel changes drop rates. Picks and votes live in a dedicated Durable Object, separate from the Culvert tracker.
 
-**Permission:** Tiger member, Tiger Admin, Discord Admin or configured owner in the Tiger server.
+**Permission:** Anyone in the Tiger server, with no Tiger role or tracker link required.
 
-**Visibility:** The channel is public in the invoking channel. Feedback and access errors are private.
+**Visibility:** The channel and successful feedback updates are public in the invoking message. Access, expired-button and save errors are private. Successful clicks edit the original message without posting another reply.
 
 ---
 
