@@ -271,3 +271,12 @@ Do not use a public Worker URL to register commands. Command registration is int
 
 Use `/health` for a private read-only check of Worker, Apps Script, Discord, audit-channel, queue and Gemini health. It also shows the latest persisted scheduled Culvert reset outcome and flags when the expected Thursday reset date has no recorded attempt after the grace window. Use `/linkaudit` for roster/Discord-link integrity. Tiger writes top-level Discord bot actions and scheduled reset start/success/failure outcomes to the private Tiger bot log channel for operational audit history.
 
+
+
+## New Participation Status screenshot layout
+
+Open Members → Participation Status. For imports, clear row crops may omit headings, week tabs and Flag Race; choose the correct import-session week. The row order is Name, Job, Level, Rank, Weeklys, Culvert, optional Flag Race. Do not treat the rightmost score as Flag Race when that column is cropped out. Weeklys is optional activity data and does not block import confirmation. Missing optional values remain blank, not zero.
+
+For member proof, select This Week and include the full IGN and whole Culvert score. A crop need not show the Participation Status title or Flag Race. Last Week does not qualify. Names before opening brackets are IGNs; nicknames and row highlighting have no identity significance. The member's exact linked IGN and the existing score checks still apply.
+
+The eight original reference crops and hand-labelled expectations are in tests/fixtures/participation-ui-2026-11. Mocked provider tests check transport, parsing and policy, and do not establish visual-model accuracy.
