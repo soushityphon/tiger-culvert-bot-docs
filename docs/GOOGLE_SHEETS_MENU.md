@@ -28,6 +28,12 @@ From an Import Review row, creates a new Players record marked inactive/former a
 
 Use this for historical players who should not become current guild members. Historical/former creation never promotes a `Discord Onboarding` identity.
 
+### `Confirm IGN change`
+
+For an unconfirmed Discord **Current week** import, choose the existing player under **Matched IGN** in Import Review. Once the row shows **OK**, select it and use **Tiger Tracker > Confirm IGN change**. Check the Player ID and type the full new IGN shown in the prompt. The action saves the old IGN in **Previous IGNs / aliases**, updates **Current IGN** on the existing Players row and refreshes the selected **Matched IGN**. The Player ID, Discord link and past scores stay with that player.
+
+Use the regular **Matched IGN** dropdown for OCR corrections. If the screenshot cut off or misread the new IGN, check the exact spelling in game and correct **Detected IGN** before using the rename action. If the action reports that the roster rename was saved but the review row needs attention, select the new name under **Matched IGN** before confirming the week.
+
 ### `Confirm week into Weekly Data`
 
 Validates Import Review and writes the selected week into Weekly Data.
