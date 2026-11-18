@@ -92,6 +92,18 @@ Public results may include a varied Frank line about today's reports. A single n
 
 ---
 
+### `/maint`
+
+Shows active or upcoming GMS maintenance, affected worlds or services, and a link to each Nexon notice. Discord shows the times in each viewer's local time zone. Frank gives priority to explicit GMT or UTC times, cross-checks other schedule rows, and leaves out any time he cannot establish. After the estimated end, Frank waits for Nexon to confirm completion.
+
+Frank checks Nexon about every 15 minutes and every 5 minutes around a maintenance window. When the info is old, Frank shows when he last checked Nexon. If there is no active or upcoming notice, Frank shows the most recent completed or cancelled notice when available.
+
+**Permission:** Anyone in the Tiger server.
+
+**Visibility:** Public on request. The command sends no automatic channel posts or pings.
+
+---
+
 ### `/me [public]`
 
 Shows the caller's Tiger member profile. If the linked Players row is not Active, Tiger returns a private inactive-profile message and does not show profile data. If the Discord account is not linked, Tiger tells the member to ask a Tiger Admin to use `/link`.
