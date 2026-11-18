@@ -382,6 +382,14 @@ Manually runs the same whole-guild Culvert Reminder role cleanup used after the 
 
 ## Culvert import administration
 
+### `/culvertimport help`
+
+Opens a private dropdown in the Tiger server. Pick a topic for step-by-step help with current and historical imports, row corrections, IGN changes, new and former players, confirmation, recovery or the CSV fallback. The dropdown updates the same message.
+
+**Permission:** Tiger Admin, Discord Admin or bot owner in the Tiger server.
+
+**Visibility:** Private.
+
 ### `/culvertimport status [public]`
 
 Shows the caller's latest Culvert import session, including mode, Tiger week, message count, screenshot count, and current status.
