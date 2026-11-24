@@ -100,7 +100,9 @@ Frank checks Nexon about every 15 minutes and every 5 minutes around a maintenan
 
 **Permission:** Anyone in the Tiger server.
 
-**Visibility:** Public on request. The command sends no automatic channel posts or pings.
+**Visibility:** Public on request.
+
+Frank also posts new GMS maintenance notices in #announcements without pings. He updates the same post as the schedule or status changes, including completion and cancellation. Notices already present when posting starts stay out of the channel. The card title links to Nexon.
 
 ---
 
