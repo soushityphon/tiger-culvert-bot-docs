@@ -28,6 +28,10 @@ From an Import Review row, creates a new Players record marked inactive/former a
 
 Use this for historical players who should not become current guild members. Historical/former creation never promotes a `Discord Onboarding` identity.
 
+### `Set main for selected Culvert row`
+
+For a verified gold-star change during the score week, select the affected Import Review row. Check when the scored run happened and type the full IGN of the character that held the star for that run. This keeps the original score and Player ID. Complete the normal week confirmation after review. Past confirmed scores keep the main already recorded in Weekly Data.
+
 ### `Confirm IGN change`
 
 For an unconfirmed Discord **Current week** import, choose the existing player under **Matched IGN** in Import Review. Once the row shows **OK**, select it and use **Tiger Tracker > Confirm IGN change**. Check the Player ID and type the full new IGN shown in the prompt. The action saves the old IGN in **Previous IGNs / aliases**, updates **Current IGN** on the existing Players row and refreshes the selected **Matched IGN**. The Player ID, Discord link and past scores stay with that player.

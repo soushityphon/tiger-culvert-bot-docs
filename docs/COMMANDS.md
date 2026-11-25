@@ -437,6 +437,16 @@ This is mainly a recovery command. New imports normally start OCR automatically 
 
 ---
 
+### `/culvertimport resolve row screenshot`
+
+Tiger admins can attach a **Group List** from **Participation Status → Account Info** for a flagged import row. Copy its `GR-…` reference from Discord or Import Review. Frank shows the characters, their jobs and levels, and possible roster matches. Approve the correct main in the preview. The original Culvert score stays with the staged week. Check **Import Review** and use **Confirm week into Weekly Data** when all rows are ready.
+
+### `/grouplist screenshot [player]` or `/grouplist review`
+
+Submit your own **Guild Info → Account Group → Group Settings** screenshot. Frank checks your linked Active Tiger player. A Tiger admin opens `/grouplist review:<GL reference>` to review and approve the submission. Admins can also upload **Group List** for another player using their current main IGN in `player`.
+
+A verified gold-star move changes the main on the same Tiger Player ID and keeps the Discord link. If it is unclear who scored in the changeover week, use **Tiger Tracker → Set main for selected Culvert row** in Import Review and choose the correct main before confirmation.
+
 ### `/culvertimport cancel`
 
 Cancels the caller's open import session.
