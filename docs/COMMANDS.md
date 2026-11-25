@@ -503,9 +503,9 @@ The fast guild-member snapshot requires Discord's privileged **Server Members In
 
 ---
 
-## `Resolve Culvert Groups`
+## `Review Group Lists`
 
-Post up to ten **Group List** screenshots in one message, then right-click the message and choose **Apps → Resolve Culvert Groups**. Open each Group List through **Participation Status → Account Info**. Frank checks the names, jobs and levels against flagged rows in the active Discord import.
+Post up to ten **Group List** screenshots in one message, then right-click the message and choose **Apps → Review Group Lists**. Open each Group List through **Participation Status → Account Info**. Frank checks the names, jobs and levels against flagged rows in the active Discord import.
 
 Review the private preview and use **Approve matches** for the clear results. Where one staged row has several possible Tiger mains, Frank can show a player picker. If the right staged row is still unclear, check **Import Review** and use `/culvertimport resolve` for that row. The batch preview expires after ten minutes.
 
