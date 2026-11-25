@@ -472,6 +472,7 @@ Processes the zero-score screenshots supplied by the Tiger Admin and treats thos
 - retries transient OCR failures without reprocessing successful screenshots
 - requires every supplied screenshot to process safely before automatically updating roles
 - blocks Apply when the scan is incomplete or a required Discord check is unresolved
+- matches a clipped main when its name prefix and job point to one active roster player. An unclear match, a conflicting group clue or an unreadable score still needs review
 - when OCR rows need review, offers **Apply confirmed only** and keeps existing roles in place
 - respects vacation exemptions
 - checks the current Discord role state, preferring a bulk guild-member snapshot for speed and falling back to conservative targeted checks if needed
